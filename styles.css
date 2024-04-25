@@ -5,6 +5,10 @@
 body {
     margin: 0;
     font-family: "Source Sans 3", sans-serif;
+
+    /* testing parchment background */
+    background-image: url("./assets/images/Parchment\ Foley.png");
+    background-size: cover;
 }
 
 h1 {
