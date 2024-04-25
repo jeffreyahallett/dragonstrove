@@ -2,6 +2,12 @@
     box-sizing: border-box;
 }
 
+/* Color Variables */
+:root {
+    --green: #234729;
+    --gold: #FFB900;
+}
+
 body {
     margin: 0;
     font-family: "Source Sans 3", sans-serif;
@@ -11,6 +17,59 @@ body {
     background-size: cover;
 }
 
-h1 {
+h1,
+h2,
+h3, 
+nav a {
     font-family: "Milonga", serif;
+}
+
+/* Utility Outline Classes */
+.outline-hot-pink {
+    border: 5px dotted hotpink;
+}
+
+.outline-lime-green {
+    border: 5px dotted limegreen;
+}
+
+.outline-purple {
+    border: 5px dotted purple;
+}
+
+/* Nav */
+.navbar {
+    background-color: var(--green);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 40px;
+}
+
+nav ul {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+}
+
+nav li {
+    list-style: none;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--gold);
+    font-size: 32px;
+}
+
+nav button {
+    font-family: "Milonga", serif;
+    font-size: 24px;
+    /* NOTE: CHANGE THIS TO AN OFF-BLACK */
+    color: #000;
+    background: var(--gold);
+    border: none;
+    padding: 12px 12px;
 }
