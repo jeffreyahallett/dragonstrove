@@ -37,8 +37,11 @@ nav a {
     border: 5px dotted purple;
 }
 
+
 /* Nav */
-.navbar {
+.navbar,
+footer {
+    background-image: url(assets/images/Dragon\ Scale\ Foley\ 01.png);
     background-color: var(--green);
 
     display: flex;
@@ -73,3 +76,73 @@ nav button {
     border: none;
     padding: 12px 12px;
 }
+
+/* Main */
+main {
+    padding: 0 72px;
+}
+
+/* Hero */
+
+/*
+    Questions about image fill backgrounds:
+
+    - Is this accessible or the best approach for a11y?
+    - Is this the best pratice way for me to achieve this given the textured background for the entire website?
+
+*/
+.hero {
+    background-image: url(assets/images/DragonsTrovePress-Watermark-Hero-Logo.png);
+    background-repeat: no-repeat;
+    background-position: center;
+
+    padding: 192px;
+
+    text-align: center;
+}
+
+h1 {
+    font-size: 96px;
+    margin: 0;
+}
+.hero-intro-text{
+    font-family: "Milonga", serif;
+    font-size: 48px;
+}
+
+.hero-tagline-text {
+    font-family: "Milonga", serif;
+    font-size: 36px;
+}
+
+
+/* Story */
+
+/* Note: this H2, p are general text style and can likely be moved elsewhere */
+h2 {
+    font-size: 60px;
+}
+
+
+p {
+    font-size: 20px;
+    line-height: 35px;
+}
+
+.story-section-title {
+    margin-bottom: 0;
+}
+
+.story-content-text {
+    width: 50%;
+}
+
+
+.flex-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+
