@@ -15,21 +15,23 @@
 <body>
     <header class="outline-hot-pink navbar">
         <div>
-            <img src="./assets/images/Logo.png" alt="logo">
+            <a href="#top">
+                <img src="assets/images/Logo.png" alt="logo">
+            </a>
         </div>
         <nav>
             <ul>
                 <li>
-                    <a href="#">Story</a>
+                    <a href="#story-section">Story</a>
                 </li>
                 <li>
-                    <a href="#">Our Tomes</a>
+                    <a href="#tomes-section">Our Tomes</a>
                 </li>
                 <li>
-                    <a href="#">Master of Scribe</a>
+                    <a href="#author-section">Master of Scribe</a>
                 </li>
                 <li>
-                    <button>Send an Owl</button>
+                    <button class="drop-shadow">Send an Owl</button>
                 </li>
             </ul>
         </nav>
@@ -39,14 +41,14 @@
     <main class="outline-hot-pink">
         <!-- Hero -->
         <section class="outline-lime-green hero">
-            <!-- <img src="./assets/images/DragonsTrovePress-Watermark-Hero-Logo.png" alt="watermark-dragon-logo"> -->
+            <!-- <img class="hero-logo" src="./assets/images/DragonsTrovePress-Watermark-Hero-Logo.png" alt="watermark-dragon-logo"> -->
             <span class="hero-intro-text">Behold The</span>
             <h1>Dragon's Trove</h1>
             <span class="hero-tagline-text">‘For the passionate, not necessarily the professional’</span>
         </section>
 
         <!-- Story -->
-        <section class="outline-lime-green">
+        <section class="outline-lime-green" id="story-section">
             <h2 class="story-section-title">The Story of Dragon’s Trove</h2>
             
             <div class="flex-container">
@@ -61,18 +63,18 @@
         </section>
 
         <!-- Tomes -->
-        <section class="outline-lime-green">
+        <section class="outline-lime-green" id="tomes-section">
             <h2>Our Tomes</h2>
             <!-- Book 1 -->
             <div class="book-card outline-purple">
                 <!-- book image -->
-                <div>
-                    <img src="assets/images/book-one-placeholder-no-shadow.png" alt="book cover">
-                </div>
+                <!-- <div> -->
+                    <img class="drop-shadow" src="assets/images/book-one-placeholder-no-shadow.png" alt="book cover">
+                <!-- </div> -->
                 
                 <!-- book content -->
-                <div class="book-description-panel">
-                    <h3>Coming 2024</h3>
+                <div class="book-description-panel drop-shadow">
+                    <h3 class="upcoming-tomes-text">Coming 2024</h3>
                     <!-- Book Title -->
                     <p class="book-title">Paths Into Darkness & Light</p>
                     <!-- Author + Illustrator Credit -->
@@ -88,13 +90,13 @@
             <!-- Book 2 -->
             <div class="book-card outline-purple">
                 <!-- book image -->
-                <div>
-                    <img src="assets/images/book-two-placeholder-no-shadow.png" alt="book cover">
-                </div>
+                <!-- <div> -->
+                    <img class="drop-shadow" src="assets/images/book-two-placeholder-no-shadow.png" alt="book cover">
+                <!-- </div> -->
                 
                 <!-- book content -->
-                <div class="book-description-panel">
-                    <h3>Coming 2025</h3>
+                <div class="book-description-panel drop-shadow">
+                    <h3 class="upcoming-tomes-text">Coming 2025</h3>
                     <!-- Book Title -->
                     <p class="book-title">Ways Between Radiance & Shadow</p>
                     <!-- Author + Illustrator Credit -->
@@ -111,7 +113,7 @@
         </section>
 
         <!-- Author -->
-        <section class="outline-lime-green">
+        <section class="outline-lime-green" id="author-section">
             <h2 class="author-section-title">Our Master of Scribe, Jeffrey Hallett</h2>
             
             <div class="flex-container">
@@ -129,17 +131,19 @@
     <!-- End Main -->
     <!-- Footer -->
     <footer class="outline-hot-pink">
-        <img src="assets/images/Logo.png" alt="logo">
+        <a href="#top">
+            <img src="assets/images/Logo.png" alt="logo">
+        </a>
         <nav>
             <ul>
                 <li>
-                    <a href="#">Story</a>
+                    <a href="#story-section">Story</a>
                 </li>
                 <li>
-                    <a href="#">Our Tomes</a>
+                    <a href="#tomes-section">Our Tomes</a>
                 </li>
                 <li>
-                    <a href="#">Master of Scribe</a>
+                    <a href="#author-section">Master of Scribe</a>
                 </li>
                 <li>
                     <button>Send an Owl</button>

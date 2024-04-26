@@ -12,10 +12,12 @@ body {
     margin: 0;
     font-family: "Source Sans 3", sans-serif;
 
-    /* testing parchment background */
-    background-image: url("./assets/images/Parchment\ Foley.png");
-    background-size: cover;
+      /* testing parchment background */
+      background-image: url("./assets/images/Parchment\ Foley.png");
+      background-size: contain;
 }
+
+
 
 h1,
 h2,
@@ -26,7 +28,7 @@ nav a {
 
 /* Utility Outline Classes */
 
-/* .outline-hot-pink {
+.outline-hot-pink {
     border: 5px dotted hotpink;
 }
 
@@ -36,7 +38,12 @@ nav a {
 
 .outline-purple {
     border: 5px dotted purple;
-} */
+}
+
+.drop-shadow {
+    /* box shadow --- revisit laters */
+    box-shadow: 0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+}
 
 /* util classes end */
 
@@ -67,6 +74,10 @@ nav li {
 nav a {
     text-decoration: none;
     color: var(--gold);
+    text-shadow: 1px 1px 2px #000;
+    /* outline stroke for text is experimental -- might not be the best approach? */
+    -webkit-text-stroke: .5px #000;
+
     font-size: 32px;
 }
 
@@ -78,6 +89,15 @@ nav button {
     background: var(--gold);
     border: none;
     padding: 12px 12px;
+    cursor: pointer;
+}
+
+nav button:hover {
+    background-color: #ffd45d;
+}
+
+nav a:hover {
+   color: #ffd45d;
 }
 
 /* Main */
@@ -88,8 +108,10 @@ main {
 /* Sections */
 
 section {
-    margin-bottom: 32px;
+    margin-bottom: 148px;
 }
+
+
 
 /* Hero */
 
@@ -103,11 +125,18 @@ section {
 .hero {
     background-image: url(assets/images/DragonsTrovePress-Watermark-Hero-Logo.png);
     background-repeat: no-repeat;
+    /* Turning off contain since this increases the img size */
+    /* background-size: contain; */
     background-position: center;
 
-    padding: 192px;
+    padding: 200px;
 
     text-align: center;
+}
+
+.hero-logo {
+    z-index: -1;
+    position: absolute;
 }
 
 h1 {
@@ -155,8 +184,9 @@ p {
 
 /* Tomes Section */
 
-h3 {
+.upcoming-tomes-text {
     font-size: 48px;
+    margin-top: 0;
 }
 
 .book-card {
@@ -171,9 +201,6 @@ h3 {
     background-color: #FFEAB1;
 
     padding: 24px 42px;
-
-    /* box shadow --- revisit laters */
-    box-shadow: 0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
 }
 
 .book-title {
