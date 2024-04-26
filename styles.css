@@ -25,7 +25,8 @@ nav a {
 }
 
 /* Utility Outline Classes */
-.outline-hot-pink {
+
+/* .outline-hot-pink {
     border: 5px dotted hotpink;
 }
 
@@ -35,7 +36,9 @@ nav a {
 
 .outline-purple {
     border: 5px dotted purple;
-}
+} */
+
+/* util classes end */
 
 
 /* Nav */
@@ -80,6 +83,12 @@ nav button {
 /* Main */
 main {
     padding: 0 72px;
+}
+
+/* Sections */
+
+section {
+    margin-bottom: 32px;
 }
 
 /* Hero */
@@ -144,5 +153,40 @@ p {
     align-items: center;
 }
 
+/* Tomes Section */
 
+h3 {
+    font-size: 48px;
+}
 
+.book-card {
+    display: flex;
+    gap: 36px;
+
+    margin-bottom: 48px;
+
+}
+
+.book-description-panel {
+    background-color: #FFEAB1;
+
+    padding: 24px 42px;
+
+    /* box shadow --- revisit laters */
+    box-shadow: 0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.book-title {
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.book-credits {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.heading-text-utility {
+    font-family: "Milonga", serif;
+    font-size: 24px;
+}
