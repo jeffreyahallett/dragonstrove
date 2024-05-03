@@ -49,6 +49,20 @@ nav a {
 
 
 /* Nav */
+
+.navbar,
+.navbar * {
+  transition: 500ms;
+}
+.navbar {
+    position: sticky;
+    top: 0;
+}
+
+.navbar.sticking {
+    border: 1px solid hotpink;
+    padding: 0px 20px;
+}
 .navbar,
 footer {
     background-image: url(assets/images/Dragon\ Scale\ Foley\ 01.png);
