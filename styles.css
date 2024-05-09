@@ -13,7 +13,7 @@ body {
     font-family: "Source Sans 3", sans-serif;
 
       /* testing parchment background */
-      background-image: url("./assets/images/Parchment\ Foley.png");
+      background-image: url("./assets/images/mbp16_parchment_1_overlay.jpg");
       background-size: contain;
 
       overscroll-behavior: none;
@@ -48,7 +48,6 @@ nav a {
 }
 
 /* util classes end */
-
 
 /* Nav */
 
@@ -125,6 +124,7 @@ main {
 
 section {
     margin-bottom: 148px;
+    scroll-margin-top: 200px;
 }
 
 
