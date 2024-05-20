@@ -205,6 +205,11 @@ p {
     margin-top: 0;
 }
 
+.book-img {
+    width: 100%;
+    height: auto;
+}
+
 .book-card {
     display: flex;
     gap: 36px;
@@ -233,3 +238,6 @@ p {
     font-family: "Milonga", serif;
     font-size: 24px;
 }
+
+
+/* First Breakpoint 1193px */
