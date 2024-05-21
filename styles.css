@@ -62,7 +62,8 @@ nav a {
 
 .navbar.sticking {
     
-    padding: 0px 20px;
+    /* padding: 0px 20px; */
+    padding: 0px 1.25em;
 }
 .navbar,
 footer {
@@ -73,12 +74,12 @@ footer {
     justify-content: space-between;
     align-items: center;
 
-    padding: 40px;
+    padding: 2.5em;
 }
 
 nav ul {
     display: flex;
-    gap: 32px;
+    gap: 2em;
     align-items: center;
 }
 
@@ -93,17 +94,19 @@ nav a {
     /* outline stroke for text is experimental -- might not be the best approach? */
     -webkit-text-stroke: .5px #000;
 
-    font-size: 32px;
+    font-size: 2em;
 }
 
 nav button {
     font-family: "Milonga", serif;
-    font-size: 24px;
+    /* font-size: 24px; */
+    font-size: 1.5rem;
     /* NOTE: CHANGE THIS TO AN OFF-BLACK */
     color: #000;
     background: var(--gold);
     border: none;
-    padding: 12px 12px;
+    /* padding: 12px 12px; */
+    padding: .75rem .75rem;
     cursor: pointer;
 }
 
@@ -117,14 +120,20 @@ nav a:hover {
 
 /* Main */
 main {
-    padding: 0 72px;
+    /* padding: 0 72px; */
+    padding: 0 4.5rem;
 }
 
 /* Sections */
 
 section {
-    margin-bottom: 148px;
-    scroll-margin-top: 200px;
+    
+    /* margin-bottom: 148px; */
+    margin-bottom: 9.25rem;
+    
+    /* scroll-margin-top: 200px; */
+    scroll-margin-top: 12.5rem;
+
 }
 
 
@@ -138,6 +147,7 @@ section {
     - Is this the best pratice way for me to achieve this given the textured background for the entire website?
 
 */
+
 .hero {
     background-image: url(assets/images/DragonsTrovePress-Watermark-Hero-Logo.png);
     background-repeat: no-repeat;
@@ -145,7 +155,8 @@ section {
     /* background-size: contain; */
     background-position: center;
 
-    padding: 200px;
+    /* padding: 200px; */
+    padding: 12.5rem;
 
     text-align: center;
 }
@@ -156,17 +167,21 @@ section {
 }
 
 h1 {
-    font-size: 96px;
+    /* font-size: 96px; */
+    font-size: 6rem;
     margin: 0;
 }
+
 .hero-intro-text{
     font-family: "Milonga", serif;
-    font-size: 48px;
+    /* font-size: 48px; */
+    font-size: 3rem;
 }
 
 .hero-tagline-text {
     font-family: "Milonga", serif;
-    font-size: 36px;
+    /* font-size: 36px; */
+    font-size: 2.25rem;
 }
 
 
@@ -174,13 +189,16 @@ h1 {
 
 /* Note: this H2, p are general text style and can likely be moved elsewhere */
 h2 {
-    font-size: 60px;
+    /* font-size: 60px; */
+    font-size: 3.75rem;
 }
 
 
 p {
-    font-size: 20px;
-    line-height: 35px;
+    /* font-size: 20px; */
+    font-size: 1.25rem;
+    /* line-height: 35px; */
+    line-height: 2.1875rem;
 }
 
 .story-section-title {
@@ -201,7 +219,8 @@ p {
 /* Tomes Section */
 
 .upcoming-tomes-text {
-    font-size: 48px;
+    /* font-size: 48px; */
+    font-size: 3rem;
     margin-top: 0;
 }
 
@@ -212,31 +231,38 @@ p {
 
 .book-card {
     display: flex;
-    gap: 36px;
+    /* gap: 36px; */
+    gap: 2.25em;
 
-    margin-bottom: 48px;
+    /* margin-bottom: 48px; */
+    margin-bottom: 3rem;
 
 }
 
 .book-description-panel {
     background-color: #FFEAB1;
 
-    padding: 24px 42px;
+    /* padding: 24px 42px; */
+    padding: 1.5rem 2.625rem;
 }
 
 .book-title {
-    font-size: 32px;
+    /* font-size: 32px; */
+    font-size: 2rem;
     font-weight: bold;
 }
 
 .book-credits {
-    font-size: 20px;
+    /* font-size: 20px; */
+    font-size: 1.25rem;
+
     font-weight: 600;
 }
 
 .heading-text-utility {
     font-family: "Milonga", serif;
-    font-size: 24px;
+    /* font-size: 24px; */
+    font-size: 1.5rem;
 }
 
 
