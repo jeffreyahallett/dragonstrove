@@ -15,3 +15,45 @@ const navObserver = new IntersectionObserver(
 );
 
 navObserver.observe(scrollWatcher);
+
+
+// Mobile navigation interactions
+const mobileMenuIcon = document.getElementById('mobile-menu');
+const mobileCloseIcon = document.getElementById('mobile-close');
+const navItems = document.getElementById('nav-items-container');
+
+mobileMenuIcon.addEventListener('click', function(){
+  // console.log('cool broh clicked')
+  // show the nav items
+  navItems.style.display = 'block';
+  
+  // hide the menu icon
+  mobileMenuIcon.style.display = 'none';
+  
+  // show the close icon
+  mobileCloseIcon.style.display = 'block';
+
+});
+
+mobileCloseIcon.addEventListener('click', closeMenu)
+
+function closeMenu(){
+  // show the nav items
+  navItems.style.display = 'none';
+  
+  // hide the menu icon
+  mobileMenuIcon.style.display = 'block';
+  
+  // show the close icon
+  mobileCloseIcon.style.display = 'none';
+}
+
+
+// allowing tapping outside of the menu to close the nav
+
+// window.addEventListener('click', windowClick)
+
+// function windowClick(event){
+//     console.log(`great job, you clicked the window, broh`)
+    
+// }
