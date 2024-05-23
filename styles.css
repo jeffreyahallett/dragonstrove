@@ -118,6 +118,28 @@ nav a:hover {
    color: #ffd45d;
 }
 
+/* 
+    Mobile Nav Menu Icon 
+
+    - by default will need to be hidden
+*/
+
+.mobile-menu-icon {
+
+    color: #FFB900;
+    font-size: 1.75rem;
+    /* using this to create a similar effect to the nav links */
+    
+    text-shadow: 1px 1px 2px #000;
+    /* outline stroke for text is experimental -- might not be the best approach? */
+    -webkit-text-stroke: .5px #000;
+}
+
+.navbar-logo-mobile-menu {
+    display: flex;
+    align-items: center;
+}
+
 /* Main */
 main {
     /* padding: 0 72px; */
@@ -266,4 +288,166 @@ p {
 }
 
 
+
+/* *********************************************** */
+/* **************** MEDIA QUERIES **************** */
+/* *********************************************** */
+
 /* First Breakpoint 1193px */
+@media only screen and (max-width: 430px) {
+ 
+    nav {
+
+        display: none;
+
+    }
+
+   .navbar {
+    width: 100%;
+    padding: 1.25rem;
+   }
+
+    .logo-img {
+        width: 90%;
+    }
+
+    main {
+        width: 100%;
+        padding: 1rem;
+    }
+
+    .home-logo-link {
+        text-align: center;
+    }
+
+   /* hero section */
+   .hero {
+    background-image: url(assets/images/DragonsTrovePress-Watermark-Hero-Logo.png);
+    background-repeat: no-repeat;
+    /* Turning off contain since this increases the img size */
+    /* background-size: contain; */
+    background-position: center;
+    background-size: 80%;
+
+    /* padding: 200px; */
+    /* padding: 12.5rem; */
+    padding: 2rem;
+    text-align: center;
+
+    }
+
+    /* .hero-logo {
+        z-index: -1;
+        position: absolute;
+    } */
+
+    h1 {
+        /* font-size: 96px; */
+        /* font-size: 6rem; */
+        font-size: 3rem;
+        margin: 0;
+    }
+
+    .hero-intro-text{
+        font-family: "Milonga", serif;
+        /* font-size: 48px; */
+        /* font-size: 3rem; */
+        font-size: 1.5rem;
+    }
+
+    .hero-tagline-text {
+        font-family: "Milonga", serif;
+        /* font-size: 36px; */
+        /* font-size: 2.25rem; */
+        font-size: 1.125rem;
+    }
+
+    /* Story */
+
+    /* Note: this H2, p are general text style and can likely be moved elsewhere */
+    h2 {
+        /* font-size: 60px; */
+        /* font-size: 3.75rem; */
+        font-size: 1.875rem;
+        text-align: center;
+    }
+
+
+    p {
+        /* font-size: 20px; */
+        font-size: 1rem;
+        /* line-height: 35px; */
+        line-height: 2.1875rem;
+    }
+
+    .story-section-title {
+        margin-bottom: 0;
+    }
+
+    .story-content-text {
+        width: 100%;
+        order: 2;
+    }
+
+    .story-section-img {
+        width: 70%;
+        order: 1
+    }
+
+    .flex-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    /* Tomes Section */
+        
+        .book-img {
+            width: 100%;
+            /* height: auto; */
+        }
+        
+        .book-card {
+            display: flex;
+            flex-direction: column;
+            /* gap: 36px; */
+            /* gap: 2.25em; */
+        
+            /* margin-bottom: 48px; */
+            margin-bottom: 3rem;
+        
+        }
+        
+        .book-description-panel {
+            background-color: #FFEAB1;
+        
+            /* padding: 24px 42px; */
+            padding: 1.5rem 2.625rem;
+        }
+        
+        .book-title {
+            /* font-size: 32px; */
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        
+        .book-credits {
+            /* font-size: 20px; */
+            font-size: 1.25rem;
+        
+            font-weight: 600;
+        }
+        
+        .heading-text-utility {
+            font-family: "Milonga", serif;
+            /* font-size: 24px; */
+            font-size: 1.5rem;
+        }
+
+        /* author section */
+        .author-img {
+            width: 85%;
+        }
+
+  }
