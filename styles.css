@@ -125,7 +125,9 @@ nav a:hover {
 */
 
 .mobile-menu-icon {
-
+    /* default this should be hidden */
+    display: none;
+    
     color: #FFB900;
     font-size: 1.75rem;
     /* using this to create a similar effect to the nav links */
