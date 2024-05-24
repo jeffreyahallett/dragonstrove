@@ -321,15 +321,28 @@ p {
     font-size: 1.5rem;
 }
 
+.author-img {
+    width: 45%;
+}
+
 
 
 /* *********************************************** */
 /* **************** MEDIA QUERIES **************** */
 /* *********************************************** */
 
-/* First Breakpoint 1193px */
-@media only screen and (max-width: 430px) {
- 
+/* First Breakpoint 1231px + is handled by the current design */
+
+@media only screen and (max-width: 1229px){
+    /* h1{ color:purple;} */
+    main {
+        padding: 0 2.25rem;
+    }
+}
+
+@media only screen and (max-width: 1202px){
+    /* h1{ color:greenyellow;} */
+
     nav {
         display: none;
     }
@@ -357,6 +370,11 @@ p {
      flex-direction: column;
     }
 
+    .navbar-logo-mobile-menu {
+        width: 100%;
+        justify-content: space-between;
+    }
+
     nav ul {
         display: flex;
         flex-direction: column;
@@ -364,7 +382,82 @@ p {
         /* removes the default inline padding | allows for menu items + logo to be centered */
         padding: 0;
     }
+}
 
+/* stack book layout first time */
+@media only screen and (max-width: 1150px){
+    .book-card {
+        flex-direction: column;
+        width: 45%;
+    }
+
+    .tomes-container {
+        display: flex;
+        justify-content: space-between;
+
+        
+    }
+}
+
+/* stack book layout first time */
+@media only screen and (max-width: 1000px){
+    .hero {
+        padding: 8rem 2rem;
+    }
+    
+    .book-card {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .tomes-container {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        
+    }
+}
+
+/* stack book layout first time */
+@media only screen and (max-width: 900px){
+    /* .book-card {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .tomes-container {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        
+    } */
+
+    .story-content-text {
+        width: 100%;
+        order: 2;
+    }
+
+    .story-section-img {
+        width: 70%;
+        order: 1
+    }
+
+    .flex-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
+
+
+@media only screen and (max-width: 500px) {
+ 
+    .navbar-logo-mobile-menu {
+        width: 100%;
+        justify-content:center;
+    }
 
     .logo-img {
         width: 90%;
@@ -374,6 +467,10 @@ p {
     main {
         width: 100%;
         padding: 1rem;
+    }
+
+    section {
+        margin-bottom: 4rem;
     }
 
     .home-logo-link {
@@ -391,7 +488,7 @@ p {
 
     /* padding: 200px; */
     /* padding: 12.5rem; */
-    padding: 2rem;
+    padding: 8rem 1rem;
     text-align: center;
 
     }
@@ -405,7 +502,7 @@ p {
         /* font-size: 96px; */
         /* font-size: 6rem; */
         font-size: 3rem;
-        margin: 0;
+        margin: .5rem 0;
     }
 
     .hero-intro-text{
@@ -444,7 +541,7 @@ p {
         margin-bottom: 0;
     }
 
-    .story-content-text {
+    /* .story-content-text {
         width: 100%;
         order: 2;
     }
@@ -459,7 +556,7 @@ p {
         flex-direction: column;
         justify-content: space-between;
         align-items: center;
-    }
+    } */
 
     /* Tomes Section */
         
@@ -514,4 +611,7 @@ p {
             width: 85%;
         }
 
+        footer {
+            justify-content: center;
+        }
   }
