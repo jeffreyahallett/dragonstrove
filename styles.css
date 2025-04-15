@@ -251,7 +251,7 @@ p {
 }
 
 .book-img {
-    width: 100%;
+    width: 30%;
     height: auto;
 }
 
@@ -276,7 +276,16 @@ p {
     /* font-size: 32px; */
     font-size: 2rem;
     font-weight: bold;
+    margin-bottom: 0;
 }
+
+.book-episode {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-top: 0;
+}
+
+.italics {font-style: italic;}
 
 .book-credits {
     /* font-size: 20px; */
@@ -330,6 +339,12 @@ p {
 /* *********************************************** */
 /* **************** MEDIA QUERIES **************** */
 /* *********************************************** */
+
+@media only screen and (max-width: 1467px){
+    .book-img {
+        width: 45%;
+    }
+}
 
 /* First Breakpoint 1231px + is handled by the current design */
 
@@ -387,13 +402,14 @@ p {
 /* stack book layout first time */
 @media only screen and (max-width: 1150px){
     .book-card {
-        flex-direction: column;
-        width: 45%;
+        /* flex-direction: column; */
+        width: 100%;
     }
 
     .tomes-container {
         display: flex;
         justify-content: space-between;
+        flex-direction: column;
 
         
     }
@@ -416,11 +432,13 @@ p {
         flex-direction: column;
         
     }
+
+    .book-img {width: 100%;}
 }
 
 /* stack book layout first time */
 @media only screen and (max-width: 900px){
-    /* .book-card {
+    .book-card {
         flex-direction: column;
         width: 100%;
     }
@@ -430,7 +448,7 @@ p {
         justify-content: space-between;
         flex-direction: column;
         
-    } */
+    }
 
     .story-content-text {
         width: 100%;
