@@ -340,10 +340,26 @@ p {
 /* **************** MEDIA QUERIES **************** */
 /* *********************************************** */
 
-@media only screen and (max-width: 1467px){
+@media only screen and (max-width: 1779px){
+    .book-img {
+        width: 35%;
+    }
+}
+@media only screen and (max-width: 1565px){
     .book-img {
         width: 45%;
     }
+}
+@media only screen and (max-width: 1484px){
+    main {
+        padding: 2.25em;
+    }
+    
+    .book-img {
+        width: 55%;
+    }
+
+
 }
 
 /* First Breakpoint 1231px + is handled by the current design */
@@ -400,19 +416,21 @@ p {
 }
 
 /* stack book layout first time */
-@media only screen and (max-width: 1150px){
+/* @media only screen and (max-width: 1150px) */
+@media only screen and (max-width: 1329px){
     .book-card {
-        /* flex-direction: column; */
+        flex-direction: column;
         width: 100%;
     }
 
     .tomes-container {
         display: flex;
         justify-content: space-between;
-        flex-direction: column;
-
-        
+        /* flex-direction: column; */
+        gap: 24px
     }
+
+    .book-img {width: 100%;}
 }
 
 /* stack book layout first time */
