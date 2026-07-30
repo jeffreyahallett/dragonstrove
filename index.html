@@ -1,259 +1,912 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dragon's Trove Press</title>
-    
-    <!-- favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="./assets/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon/favicon-16x16.png">
-    <link rel="manifest" href="./assets/favicon/site.webmanifest">
-    <link rel="mask-icon" href="./assets/favicon/safari-pinned-tab.svg" color="#5bbad5">
-    <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="theme-color" content="#ffffff">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- ✎ EDIT — <title> is the text in the browser tab and the clickable headline
+       in Google results. <meta name="description"> is the grey summary Google
+       shows underneath it; aim for about 150 characters. Both are worth keeping
+       current — they're the first thing a stranger reads about the press. -->
+  <title>Dragon's Trove Press — Beacon of Hope</title>
+  <meta name="description" content="Dragon's Trove Press — home of the award-winning Beacon of Hope series by Jeffrey Hallett, illustrated by Jessica Nagel." />
 
-    <!-- FontAwesome -->
-    <!-- FontAwesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png" />
+  <link rel="apple-touch-icon" href="assets/favicon/apple-touch-icon.png" />
 
-    <!-- G Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Milonga&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+  <!-- Fonts: Cinzel (headings) + Spectral (body) + Cinzel Decorative (accents) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cinzel+Decorative:wght@700&family=Spectral:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet" />
 
-    <!-- Styles -->
-    <link rel="stylesheet" href="./styles.css">
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-    <header class="outline-hot-pink navbar">
-        <div class="navbar-logo-mobile-menu">
-            <a class="home-logo-link" href="#top">
-                <img class = "logo-img" src="assets/images/Logo.png" alt="logo">
-            </a>
 
-            <i class="fa-solid fa-bars mobile-menu-icon" id="mobile-menu"></i>
-            <i class="fa-solid fa-x mobile-close-icon" id="mobile-close"></i>
+<!--
+  ══════════════════════════════════════════════════════════════════════════════
+   DRAGON'S TROVE PRESS — how to edit this page
+  ══════════════════════════════════════════════════════════════════════════════
+
+   Jeff — this whole site is three files. No build step, no framework, nothing to
+   install or compile. You edit the file, save, and the change is live.
+
+     index.html   ← this file. ALL the words and pictures on the page.
+     styles.css   ← colours, fonts, spacing. (Rarely needs touching.)
+     main.js      ← the interactive bits. (You should never need to touch this.)
+
+   ── HOW TO PUBLISH A CHANGE ────────────────────────────────────────────────
+   Edit the file on GitHub (pencil icon, top-right of the file view) → "Commit
+   changes". Netlify rebuilds the site automatically; it's live in 1–2 minutes.
+   Nothing else to press. If something looks wrong, GitHub keeps every previous
+   version, so a change can always be undone.
+
+   ── COMMENT LEGEND ─────────────────────────────────────────────────────────
+   Comments are the notes wrapped in comment markers — this block you're reading
+   right now is one. The browser ignores everything inside them, so they never
+   show on the page. Three kinds are used throughout this file:
+
+     ✎ EDIT      → Safe to change. This is your content.
+     ▣ TEMPLATE  → A ready-made block to copy when adding a new item.
+     ⚠ CAUTION   → Change with care; here's what will break if you don't.
+
+   ── THE FIVE RULES ─────────────────────────────────────────────────────────
+   1. Change the WORDS between tags, not the tags themselves.
+        <h3 class="tome__title">Change this bit</h3>
+                                ^^^^^^^^^^^^^^^
+   2. Never change a class="..." or id="..." value. Those are the hooks the
+      styling and the interactive code use to find things. Renaming one is the
+      single most likely way to break the page.
+   3. Every opening tag needs its closing tag. <p> ... </p>, <div> ... </div>.
+      If the page suddenly looks scrambled, a missing closing tag is the usual
+      culprit.
+   4. Curly quotes and special characters are written as codes so every browser
+      renders them the same: &ldquo; = "  &rdquo; = "  &hellip; = ...  &amp; = &
+      Copy the existing pattern and you'll be fine.
+   5. To hide something without deleting it, wrap it in comment markers. To bring
+      it back, remove them. (That's exactly how the Convergence art is parked —
+      see the "Our Tomes" section.)
+
+   ── WHERE THINGS LIVE (in page order) ──────────────────────────────────────
+     NAV .................. logo + menu links
+     HERO ................. big top panel: cover, headline quote, award badges
+     OFFICIAL TRAILER ..... the YouTube video + its still image
+     COMING SOON .......... "A New Chapter Approaches" Convergence teaser
+     THE STORY ............ Dragon's Trove Press mission + dragon illustration
+     OUR TOMES ............ ★ the three book cards: blurbs, CHARACTER ART, buy links
+     TESTIMONIALS ......... reader/reviewer quote cards  (+ template to add more)
+     AWARDS ............... award badges + coverage links  (+ template to add more)
+     MASTER OF SCRIBE ..... Jeff's bio, socials, press mentions
+     CONTACT .............. email + blog buttons
+     FOOTER ............... menu, socials, copyright
+
+   ── IMAGES ─────────────────────────────────────────────────────────────────
+   Put new pictures in the matching folder, then point an <img src="..."> at it:
+     assets/images/site/art/      character art
+     assets/images/site/badges/   award seals
+     assets/images/site/          covers, author photo, trailer still
+     assets/press/                     press PDFs
+   Keep files under ~300 KB so the page stays fast. Aim for roughly 800–1000px on
+   the long edge — bigger than that is wasted on a screen and just slows things
+   down. Character art looks best cropped to a portrait/tall shape.
+
+   ── ONE THING TO LEAVE ALONE ───────────────────────────────────────────────
+   The id="..." values on the book cards (#paths-into-darkness-and-light,
+   #labyrinths-of-radiance-and-shadow, #convergence-of-destiny) and on the series
+   (#beacon-of-hope) are shareable deep links — e.g.
+   dragonstrovepress.com/#labyrinths-of-radiance-and-shadow jumps straight to that
+   book. If those get used in marketing, renaming one breaks the link for good.
+  ══════════════════════════════════════════════════════════════════════════════
+-->
+
+  <!-- ================= NAV ================= -->
+  <!-- ✎ EDIT — Menu labels are the words between the <a> tags below. The href
+       (e.g. href="#story") is the section it jumps to; leave those alone unless
+       you're also renaming the matching section id. The logo is Logo.png. -->
+
+  <header class="nav" id="top">
+    <div class="nav__inner">
+      <a class="brand" href="#top" aria-label="Dragon's Trove Press — home">
+        <img class="brand__logo" src="assets/images/Logo.png" alt="Dragon's Trove Press" />
+      </a>
+
+      <nav class="nav__links" id="primary-nav" aria-label="Primary">
+        <a href="#story">The Story</a>
+        <a href="#beacon-of-hope">Our Tomes</a>
+        <a href="#scribe">Master of Scribe</a>
+        <a class="btn btn--gold btn--sm" href="#contact">Send an Owl</a>
+      </nav>
+
+      <button class="nav__toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav">
+        <i class="fa-solid fa-bars" aria-hidden="true"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- ================= HERO ================= -->
+  <!-- ✎ EDIT — The top panel. Everything here is fair game:
+         • the cover image (currently Paths, the origin book)
+         • the eyebrow / title / subtitle lines
+         • the pull quote and who it's credited to
+         • the three buttons
+         • the two award minibadges at the bottom
+       The badges use FontAwesome icons — fa-trophy and fa-gem. Any icon name
+       from fontawesome.com/icons (the free ones) works in place of those. -->
+  <section class="hero">
+    <div class="hero__inner">
+      <div class="hero__cover">
+        <img src="assets/images/site/cover-paths.jpg"
+             alt="Beacon of Hope: Paths into Darkness and Light — book cover" />
+      </div>
+
+      <div class="hero__body">
+        <p class="eyebrow eyebrow--gold">Award-Winning Series</p>
+        <h1 class="hero__title">Beacon of Hope</h1>
+        <p class="hero__subtitle">Paths into Darkness and Light</p>
+
+        <blockquote class="hero__quote">
+          &ldquo;A strong and intriguing origin story that blends science fiction with
+          real-world tension — exciting, entertaining, and immersive.&rdquo;
+          <cite>— Reader's Favorite, 2025</cite>
+        </blockquote>
+
+        <div class="hero__cta">
+          <a class="btn btn--gold" href="#beacon-of-hope">Buy the Book</a>
+          <a class="btn btn--ghost-gold" href="#trailer"><i class="fa-solid fa-play" aria-hidden="true"></i>&nbsp;Watch the Trailer</a>
+          <a class="btn btn--ghost-gold" href="#beacon-of-hope">Explore the Series</a>
         </div>
-        <nav id="nav-items-container">
-            <ul>
-                <li>
-                    <a href="#story-section">Story</a>
-                </li>
-                <li>
-                    <a href="#tomes-section">Our Tomes</a>
-                </li>
-                <li>
-                    <a href="#author-section">Master of Scribe</a>
-                </li>
-                <li>
-                    <a href="mailto:info.dragonstrove@icloud.com">
-                        <button class="drop-shadow">Send an Owl</button>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    </header>
 
-    <!-- Main -->
-    <main class="outline-hot-pink">
-        <!-- Hero -->
-        <section class="outline-lime-green hero">
-            <!-- <img class="hero-logo" src="./assets/images/DragonsTrovePress-Watermark-Hero-Logo.png" alt="watermark-dragon-logo"> -->
-            <span class="hero-intro-text">Behold The</span>
-            <h1>Dragon's Trove</h1>
-            <span class="hero-tagline-text">‘For the passionate, not necessarily the professional’</span>
-        </section>
+        <div class="hero__badges">
+          <span class="minibadge">
+            <i class="fa-solid fa-trophy" aria-hidden="true"></i>
+            <span><strong>Reader's Favorite</strong>Illustration Award</span>
+          </span>
+          <span class="minibadge">
+            <i class="fa-solid fa-gem" aria-hidden="true"></i>
+            <span><strong>Readers' Choice</strong>Finalist 2024</span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        <!-- Story -->
-        <section class="outline-lime-green" id="story-section">
-            <h2 class="story-section-title">The Story of Dragon’s Trove</h2>
-            
-            <div class="flex-container">
-                <div class="story-content-text">
-                    <p>Dragon’s Trove Press was conceived solely to support authors who are writing purely to satisfy a creative desire to write, to share an inspiration they have, a story they want told, but likely do not have aspirations to be a New York Times Bestselling author. There are big commercial publishers for those people. </p>
-        
-                    <p>Authors who are writing purely out of passion, to check off their bucket list, to stretch their own personal boundaries by doing something new, and will likely self-publish with minimal marketing overhead are the types of authors and content creators Dragon’s Trove has in mind and seeks to support.</p>
+  <!-- ================= OFFICIAL TRAILER ================= -->
+  <section class="trailer" id="trailer">
+    <div class="section-head">
+      <p class="eyebrow eyebrow--gold">Official Series Trailer</p>
+      <h2 class="section-title section-title--light">Watch the Story Unfold</h2>
+      <p class="section-lede">When an experiment ends in disaster, scientist Tricia Carling
+        is imbued with both fantastic powers and an impossible choice: ignore them and try
+        to live a normal life, or embrace her gifts and pull humanity back from the brink
+        of destruction?</p>
+    </div>
 
-                    <p> Dragon's Trove Press does not use or condone the use of writing or art created using generative AI. We support human creativity, and the joy of human artistic collaboration, to the fullest extent possible.</p>
-                </div>
-    
-                <img class="story-section-img" src="assets/images/DragonHorde-Story.png" alt="dragon standing on a horde of books">
+    <div class="trailer__frame">
+      <!-- ✎ EDIT — To point at a different video, change data-video-id below to the
+           YouTube id: the part after "youtu.be/" or after "v=" in the URL.
+           For https://youtu.be/UPUjFooi1XM the id is UPUjFooi1XM.
+
+           The still image shown before you press play is trailer-poster.jpg. It's
+           a frame grabbed from the trailer, NOT the YouTube thumbnail — so we can
+           change it here without touching the video itself. Drop a replacement at
+           assets/images/site/trailer-poster.jpg (16:9, ~1280x720).
+
+           ⚠ CAUTION — the video does not auto-load. It's swapped in only when a
+           visitor clicks play, which keeps the page fast and stops YouTube from
+           tracking people who never watch it. That's deliberate; leave the
+           <button> wrapper in place. -->
+      <button class="trailer__poster" id="trailer-play" type="button"
+              data-video-id="UPUjFooi1XM"
+              aria-label="Play the Beacon of Hope series trailer">
+        <img src="assets/images/site/trailer-poster.jpg"
+             alt="Beacon of Hope series trailer — an open book revealing character art beside the Labyrinths cover" />
+        <span class="trailer__play" aria-hidden="true"><i class="fa-solid fa-play"></i></span>
+      </button>
+    </div>
+  </section>
+
+  <!-- ================= COMING SOON / THE STORY ================= -->
+  <!-- ✎ EDIT — The Convergence teaser band. Cover, "Coming 2026" eyebrow, the
+       purple "Work in Progress" pill, the two blurb paragraphs, and the button.
+
+       ⚠ WHEN CONVERGENCE ACTUALLY LAUNCHES — this whole <section> becomes stale.
+       Two things to do then:
+         1. Delete this section — everything from the COMING SOON banner comment
+            down to its closing </section> tag — or repoint it at whatever comes
+            next.
+         2. In "Our Tomes" below, give the Convergence card its real buy links —
+            there's a marked note on that card showing exactly where. -->
+  <section class="coming" id="coming">
+    <div class="section-head">
+      <p class="eyebrow">Coming 2026</p>
+      <h2 class="section-title">A New Chapter Approaches</h2>
+    </div>
+
+    <article class="coming__card">
+      <div class="coming__cover">
+        <img src="assets/images/site/cover-convergence.jpg"
+             alt="Beacon of Hope: Convergence of Destiny — book cover" />
+      </div>
+
+      <div class="coming__body">
+        <span class="pill pill--purple">Work in Progress</span>
+        <h3 class="coming__title">Convergence of Destiny</h3>
+        <p class="credits">Episode III · Authored by Jeffrey Hallett · Illustrated by Jessica Nagel</p>
+
+        <p>In the months since Sorensen's defeat, Tricia is haunted by her time at The
+          Workshop, struggling with the ever-growing knowledge that she is not alone and
+          questioning who she is in a changing world. However, even as she searches for
+          answers, dark powers are once again at work.</p>
+        <p>To turn the tide, Tricia must finally come to terms with her destiny as Beacon
+          once and for all and leverage her greatest strengths — her heart, her intellect,
+          and her team — to save the ones she loves and prevent the world from plunging into
+          darkness.</p>
+
+        <div class="coming__actions">
+          <a class="btn btn--green btn--sm" href="#contact">Notify me on release</a>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <!-- ================= THE STORY OF DRAGON'S TROVE (ABOUT) ================= -->
+  <!-- ✎ EDIT — The press's mission statement. Tagline, the body paragraphs, and
+       the closing creed (the no-generative-AI statement, styled differently by
+       class="about__creed"). Add another paragraph by copying a whole <p>...</p>.
+       The dragon illustration on the right is dragon-pencil-color.webp. -->
+  <section class="about" id="story">
+    <div class="about__inner">
+      <div class="about__body">
+        <p class="eyebrow">Our Story</p>
+        <h2 class="section-title about__title">The Story of Dragon's Trove</h2>
+        <p class="about__tagline">&ldquo;For the passionate, not necessarily the professional.&rdquo;</p>
+
+        <p>Dragon's Trove Press was conceived solely to support authors who write purely to
+          satisfy a creative desire — to share an inspiration they have or a story they want
+          told — but who likely do not have aspirations to be a New York Times Bestselling
+          author. There are big commercial publishers for those people.</p>
+        <p>Authors who write purely out of passion — to check off their bucket list, to
+          stretch their own boundaries by doing something new, and who will likely
+          self-publish with minimal marketing overhead — are exactly the creators Dragon's
+          Trove has in mind and seeks to support.</p>
+        <p class="about__creed">Dragon's Trove Press does not use or condone writing or art
+          created using generative AI. We champion human creativity, and the joy of human
+          artistic collaboration, to the fullest extent possible.</p>
+      </div>
+
+      <div class="about__art about__art--float">
+        <img src="assets/images/site/dragon-pencil-color.webp"
+             alt="Pencil illustration of a dragon dozing atop a trove of books, gold, and gems" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════════════════
+       OUR TOMES / SERIES  —  ★ this is where nearly all book content lives ★
+       ══════════════════════════════════════════════════════════════════════════
+
+       ── ANATOMY OF A BOOK CARD ──────────────────────────────────────────────
+       All three cards are built the same way, top to bottom. Once you can see
+       the pattern in one, you can edit any of them:
+
+         <article class="tome" id="...">     ← the whole card. id = its deep link
+           <div class="tome__cover">          ← cover image
+           <div class="tome__body">
+             <p class="tome__no">             ← "Episode I / II / III"
+             <h3 class="tome__title">         ← book title
+             <p class="credits">              ← author + illustrator line
+             <div class="tome__desc">         ← the blurb, one <p> per paragraph
+             <button class="tome__more">      ← the Read more / Read less toggle
+             CHARACTER ART BLOCK              ← marked with its own banner comment
+             <div class="tome__formats">      ← the buy links, grouped by format
+
+       ── THE BLURB ───────────────────────────────────────────────────────────
+       Edit the text inside <div class="tome__desc">. Each paragraph is its own
+       <p>...</p>; add or remove paragraphs freely. The card shows the first part
+       and the "Read more" button reveals the rest — that's automatic and adjusts
+       itself to whatever length you write. Nothing to configure.
+
+       ── THE BUY LINKS ───────────────────────────────────────────────────────
+       Inside <div class="tome__formats"> there's one <div class="format-row"> per
+       format — print, eBook, audiobook. Each row is an icon plus its retailer
+       links. To change where a retailer points, edit the href="..." on that <a>.
+       To remove a retailer, delete its whole <a ...>...</a>. To add one, copy an
+       existing <a class="retailer"> line and swap the href, the aria-label, and
+       the icon.
+         Amazon + Apple use FontAwesome icons  <i class="fa-brands fa-amazon">
+         Bookshop + IngramSpark use small PNGs <img src="assets/images/...">
+       ⚠ Please keep the aria-label text accurate (it names the book, the format,
+       and the shop). Screen-reader users hear that instead of seeing the icon.
+
+       ── DEEP LINKS — LEAVE THE ids ALONE ────────────────────────────────────
+       #beacon-of-hope (the series) and each card's own id let you link straight
+       to a book from an email, a post, or a business card:
+         dragonstrovepress.com/#labyrinths-of-radiance-and-shadow
+       Once one of those is out in the world, renaming it breaks it permanently.
+
+       ── ADDING A WHOLE NEW BOOK ─────────────────────────────────────────────
+       Copy an entire <article class="tome"> ... </article> block, give it a new
+       id, and change the cover, title, episode number, blurb, art, and links. A
+       fourth card will re-flow into the grid on its own. A brand-new *series*,
+       though, is a bigger change than a copy-paste — worth a quick note to Blake
+       first so the layout doesn't fight you.
+       ══════════════════════════════════════════════════════════════════════════ -->
+  <section class="series" id="beacon-of-hope">
+    <div class="section-head">
+      <p class="eyebrow eyebrow--gold">Our Tomes</p>
+      <h2 class="section-title section-title--light">The Beacon of Hope Series</h2>
+      <p class="section-lede">A brilliant scientist&hellip;a catastrophic accident&hellip;a
+        woman transformed.</p>
+      <p class="series__shop">Shop the series:
+        <a href="https://www.amazon.com/dp/B0FBDXF4QF" target="_blank" rel="noopener">Amazon</a>
+        <span aria-hidden="true">·</span>
+        <a href="https://bookshop.org/shop/dragonstrovepress" target="_blank" rel="noopener">Bookshop.org</a>
+      </p>
+    </div>
+
+    <div class="series__grid">
+      <!-- Book One — Paths into Darkness and Light (origin) -->
+      <article class="tome" id="paths-into-darkness-and-light">
+        <div class="tome__cover">
+          <img src="assets/images/site/cover-paths.jpg"
+               alt="Paths into Darkness and Light — book cover" />
+        </div>
+        <div class="tome__body">
+          <p class="tome__no">Episode I</p>
+          <h3 class="tome__title">Paths into Darkness and Light</h3>
+          <p class="credits">By Jeffrey Hallett · Illustrated by Jessica Nagel</p>
+          <div class="tome__desc-wrap" data-expand>
+            <div class="tome__desc" id="desc-paths">
+              <p>Meet Dr. Tricia Carling, a brilliant scientist and contented loner who is
+                satisfied immersing herself in her work and taking life one day at a time.
+                That all changes suddenly one day when an accident imbues her with unusual
+                abilities and sets her on a reluctant journey of self-discovery.</p>
+              <p>When the activities of a terrorist organization begin to look like
+                something larger and more sinister, Tricia is forced to not only learn the
+                full extent of her new capabilities but to reassess her role in the world
+                and how far she is willing to go to save humanity itself.</p>
             </div>
-        </section>
+            <button class="tome__more" type="button" aria-expanded="false" aria-controls="desc-paths">Read more</button>
+          </div>
 
-        <!-- Tomes -->
-        <section class="outline-lime-green" id="tomes-section">
-            <h2>Our Tomes</h2>
-            <div class="tomes-container">
+          <!-- ══════════ CHARACTER ART — PATHS (Episode I) ══════════════════════
+               ✎ EDIT — ★ HOW THE ART STRIPS WORK (read this once; the other two
+               books work identically) ★
 
-                <!-- Book 1 -->
-                <div class="book-card outline-purple">
-                    <!-- book image -->
-                    <!-- <div> -->
-                        <img class="book-img drop-shadow" src="assets/images/updatedCovered2025/Beacon_Of_Hope:_Paths_Into_Darkness_And_Light 9.jpg" alt="Paths into Darkness and Light Cover">
-                    <!-- </div> -->
-                    
-                    <!-- book content -->
-                    <div class="book-description-panel drop-shadow" id="paths-into-darkness-and-light-book">
-                        <h3 class="upcoming-tomes-text">Available Now</h3>
-                        <p class="italics">Complete with all-new illustrations and scenes, and over 2000 other individual edits, this second edition of the award-winning “Paths into Darkness and Light” solidifies its place as the first installment of the “Beacon of Hope” series.</p>
-                        <p class="italics">2024 Reader's Choice 5-Star Finalist<br>2025 Reader's Favorite 5-Star Review Recipient<br>2025 Reader's Favorite Illustration Award for Fiction</p>
-                        <!-- Book Title -->
-                        <p class="book-title">Paths into Darkness and Light</p>
-                        <p class="book-episode">Beacon of Hope: Episode I</p>
-                        <!-- Author + Illustrator Credit -->
-                        <p class="book-credits">Authored by Jeffrey Hallett, Illustrated by Jessica Nagel, Cover Design by Holly Dunn</p>
-                        <!-- Book Description paragraphs -->
-                        <p>Meet Dr Tricia Carling, a brilliant scientist and contented loner who is satisfied immersing herself in her work and taking life one day at a time. That all changes one day suddenly when an accident embues her with unusual abilities and sets her on a reluctant journey of self-discovery.</p>
-                        <p>When the activities of a terrorist organization begin to look like something larger and more sinister, Tricia is forced to not only learn the full extent of her new capabilities but to reassess her role in the world and how far she is willing to go to save humanity itself.</p>
-                     
-                        <div class="vendor-links-container">
-                                <span class="heading-text-utility">Currently Available:</span>
-                                <div class="links-container">
-                                    <a class="vendor-links" href="https://bookshop.org/a/115348/9798992190229" target="_blank">
-                                        <img src="assets/images/bookshoporg-icon-2c.png" class="vendor-logos" alt="bookshoporg circle icon">
-                                    </a>
-                                    <a class="vendor-links" href="https://shop.ingramspark.com/b/084?params=K9jpw4K486u7sUJRx76Nc2CLkJXyFjWzelxPlPl67b9" target="_blank">
-                                        <img src="assets/images/ingramspark-logo.png" class="vendor-logos" alt="ingramspark sharesell icon">
-                                    </a>
-                                    <a class="vendor-links" href="https://www.amazon.com/gp/product/B0FBF72MZS" target="_blank">
-                                        <i class="fa-brands fa-amazon vendor-logos"></i>
-                                    </a> 
-                                    <a class="vendor-links" href="http://books.apple.com/us/book/id6746663440" target="_blank">
-                                        <i class="fa-brands fa-apple vendor-logos"></i>
-                                    </a> 
-                                </div>
-                            </div>
-                            <p>Also available for order from your local bookseller or other online retailer</p>
-                    </div>
-                </div>
-                <!-- Book 2 -->
-                <div class="book-card outline-purple" id="labyrinths-of-radiance-and-shadow-book">
-                    <!-- book image -->
-                    <!-- <div> -->
-                        <img class="book-img drop-shadow" src="assets/images/updatedCovered2025/Beacon_Of_Hope:_Labyrinths of Radiance and Shadow.jpg" alt="Labyrinths of Radiance and Shadow Cover">
-                    <!-- </div> -->
-                    
-                    <!-- book content -->
-                    <div class="book-description-panel drop-shadow">
-                        <h3 class="upcoming-tomes-text">Available Now</h3>
-                        <p class="italics">2025 Reader's Choice 5-Star Review Recipient<br>2025 Reader's Favorite 5-Star Review Recipient</p>
-                        <!-- Book Title -->
-                        <p class="book-title">Labyrinths of Radiance and Shadow</p>
-                        <p class="book-episode">Beacon of Hope: Episode II</p>
-                        <!-- Author + Illustrator Credit -->
-                        <p class="book-credits">Authored by Jeffrey Hallett, Illustrated by Jessica Nagel, Cover Design by Holly Dunn</p>
-                        <!-- Book Description paragraphs -->
-                        <p>It’s been over a year since Beacon appeared in Crystal Bay and while her impact is generally regarded as a boon to the city, Tricia is skeptical that she’s truly making the difference she had intended.</p>
-                        <p>Her commitment will be tested though when a set of mysterious disappearances thrusts her into the center of a conspiracy that forces her to more closely examine the source of her powers and prevent nefarious forces at work from using them to threaten the very world she’s sworn to protect.</p>
-                        
-                        <div class="vendor-links-container">
-                            <span class="heading-text-utility">Currently Available:</span>
-                            <div class="links-container">
-                                 <a class="vendor-links" href="https://bookshop.org/a/115348/9798992190205" target="_blank">
-                                    <img src="assets/images/bookshoporg-icon-2c.png" class="vendor-logos" alt="bookshop org circle icon">
-                                </a> 
-                                <a class="vendor-links" href="https://shop.ingramspark.com/b/084?params=Afioa45zzoSGUmRRKljj0VQQc7QDEpPnye099Pla1P9" target="_blank">
-                                        <img src="assets/images/ingramspark-logo.png" class="vendor-logos" alt="ingramspark sharesell icon">
-                                    </a>
-                                <a class="vendor-links" href="https://www.amazon.com/gp/product/B0FC5Q4GPG" target="_blank">
-                                    <i class="fa-brands fa-amazon vendor-logos"></i>
-                                </a> 
-                                <a class="vendor-links" href="http://books.apple.com/us/book/id6746972839" target="_blank">
-                                    <i class="fa-brands fa-apple vendor-logos"></i>
-                                </a> 
-                            </div>                            
-                        </div>
-                        <p>Also available for order from your local bookseller or other online retailer</p>
-                    </div>
-                </div> 
-                <!-- Book 3 -->
-                <div class="book-card outline-purple" id="convergence-of-destiny-book">
-                    <!-- book image -->
-                    <!-- <div> -->
-                        <img class="book-img drop-shadow" src="assets/images/updatedCovered2025/Beacon_Of_Hope__Convergence of Destiny.jpg" alt="Covergence of Destiny Cover">
-                    <!-- </div> -->
-                    
-                    <!-- book content -->
-                    <div class="book-description-panel drop-shadow">
-                        <h3 class="upcoming-tomes-text">Coming Fall 2026</h3>
-                        <!-- Book Title -->
-                        <p class="book-title">Convergence of Destiny</p>
-                        <p class="book-episode">Beacon of Hope: Episode III</p>
-                        <!-- Author + Illustrator Credit -->
-                        <p class="book-credits">Authored by Jeffrey Hallett, Illustrated by Jessica Nagel, Cover Design by Holly Dunn</p>
-                        <!-- Book Description paragraphs -->
-                        <p>In the months since Sorensen's defeat, Tricia is haunted by her time at The Workshop, struggling with the ever-growing knowledge that she is not alone and questioning who she is in a changing world. However, even as she searches for answers, dark powers are once again at work.</p>
-                        <p>While Tricia continues to expand her network of allies, including a mysterious stranger from her distant past, The Circle is moving in the shadows, covertly marshaling its forces to unfold a nefarious scheme that leaves Beacon's future, and the very fate of the world, teetering on a razor's edge.</p>
-                        <p>To turn the tide, Tricia must finally come to terms with her destiny as Beacon once and for all and leverage her greatest strengths—her heart, her intellect, and her team—to save the ones she loves and prevent the world from plunging into darkness.</p>
-                        
-                        <!-- <span class="heading-text-utility">Available 2026</span>  -->
-                        <div class="vendor-links-container">
-                            <span class="heading-text-utility">Available 2026</span>
-                            <div class="links-container">
-                                <a class="vendor-links" href="#" target="_blank">
-                                    <img src="assets/images/bookshoporg-icon-2c.png" class="vendor-logos" alt="bookshop org circle icon">
-                                </a> 
-                                <a class="vendor-links" href="#" target="_blank">
-                                        <img src="assets/images/ingramspark-logo.png" class="vendor-logos" alt="ingramspark sharesell icon">
-                                    </a>
-                                <a class="vendor-links" href="#" target="_blank">
-                                    <i class="fa-brands fa-amazon vendor-logos"></i>
-                                </a> 
-                                <a class="vendor-links" href="#" target="_blank">
-                                    <i class="fa-brands fa-apple vendor-logos"></i>
-                                </a> 
-                            </div>                          
-                        </div>
-                        <!-- <p>Also available for order from your local bookseller or other online retailer</p> -->
-                    </div>
-                </div>   
-            </div> <!-- Tomes Container end -->
-        </section>
+               The strip is just a list of <img> tags. That's the whole thing.
+               Everything else — the sideways scrolling, the drag-to-slide, the
+               click-to-enlarge viewer with arrow keys and swipe — is handled
+               automatically for ANY images it finds here. There is no list of
+               filenames anywhere else, no counter to update, no JavaScript to
+               touch. Add images, remove images, reorder them: it all just works.
 
-        <!-- Author -->
-        <section class="outline-lime-green" id="author-section">
-            <h2 class="author-section-title">Our Master of Scribe, Jeffrey Hallett</h2>
-            
-            <div class="flex-container">
-                <div class="story-content-text">
-                    <p>Jeff is originally from upstate New York and has been an enthusiastic follower of science fiction, superhero, and fantasy literature, comics, shows, and movies from his early childhood. After a short stint in Wisconsin, Jeff has settled in Northern California where his career has focused on high-technology product development and, more recently, consulting on organizational and team transformation.</p>
-        
-                    <p>In his writing and his work, Jeff draws inspiration from the human condition and how we all can help each other embrace our strengths, learn from life’s opportunities, and become the best versions of ourselves. </p>
-                    <p>Jeff also enjoys music, do-it-yourself projects, and experiencing outdoors through hiking and other activities; watching the sun rise from the summit of Mt Kilimanjaro and watching humpback whales feed off the coast of Antarctica to be some of his personal defining moments.</p>
-                </div>
-    
-                <img class="author-img" src="./assets/images/author-shot-no-shadow.png" alt="black and white image of Jeffrey Hallett author and owner">
+                 SWAP an image  → change that line's src="..." to the new filename
+                 REMOVE one     → delete its whole <img ... /> line
+                 ADD one        → copy any <img ... /> line, change src and alt
+                 REORDER        → move the lines up or down
+
+               New files go in  assets/images/site/art/
+               Four to six images per book looks best; more just scrolls further.
+
+               ⚠ The alt="..." text matters twice over: screen readers read it
+               aloud, AND it becomes the caption under the enlarged image. So
+               write it as a real description ("Tricia suits up in the Beacon
+               costume"), not a filename.
+               ═══════════════════════════════════════════════════════════════ -->
+          <p class="tome__art-label">From the Pages</p>
+          <div class="tome__art" aria-label="Character art from Paths into Darkness and Light">
+            <img src="assets/images/site/art/pidal-costume.jpg" alt="Character art: Tricia suits up in the Beacon costume" loading="lazy" />
+            <img src="assets/images/site/art/pidal-battle.jpg" alt="Character art: Beacon confronts foes in a night alley" loading="lazy" />
+            <img src="assets/images/site/art/pidal-comic-shop.jpg" alt="Character art: a visit to the comic shop" loading="lazy" />
+            <img src="assets/images/site/art/pidal-brunch.jpg" alt="Character art: brunch with friends" loading="lazy" />
+          </div>
+          <!-- ══════════ END CHARACTER ART — PATHS ══════════ -->
+
+          <div class="tome__formats">
+            <div class="format-row">
+              <span class="format-row__icon" title="Print" aria-label="Print"><i class="fa-solid fa-book" aria-hidden="true"></i></span>
+              <div class="format-row__links">
+                <a class="retailer" href="https://www.amazon.com/gp/product/B0FBF72MZS" target="_blank" rel="noopener" aria-label="Buy Paths into Darkness and Light in print on Amazon"><i class="fa-brands fa-amazon" aria-hidden="true"></i></a>
+                <a class="retailer" href="https://bookshop.org/p/books/paths-into-darkness-and-light-jeffrey-hallett/22794773" target="_blank" rel="noopener" aria-label="Buy Paths into Darkness and Light in print at Bookshop.org"><img src="assets/images/bookshoporg-icon-2c.png" alt="Bookshop.org" /></a>
+                <a class="retailer" href="https://shop.ingramspark.com/b/084?params=K9jpw4K486u7sUJRx76Nc2CLkJXyFjWzelxPlPl67b9" target="_blank" rel="noopener" aria-label="Order Paths into Darkness and Light in print via IngramSpark"><img src="assets/images/Ingramspark-logo.png" alt="IngramSpark" /></a>
+              </div>
             </div>
-        </section>
-    </main>
-    <!-- End Main -->
-    <!-- Footer -->
-    <footer class="outline-hot-pink">
-        <a href="#top">
-            <img class = "logo-img" src="assets/images/Logo.png" alt="logo">
-        </a>
-        <nav>
-            <ul>
-                <li>
-                    <a href="#story-section">Story</a>
-                </li>
-                <li>
-                    <a href="#tomes-section">Our Tomes</a>
-                </li>
-                <li>
-                    <a href="#author-section">Master of Scribe</a>
-                </li>
-                <li>
-                    <a href="mailto:info.dragonstrove@icloud.com">
-                        <button class="drop-shadow">Send an Owl</button>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    </footer>
-    <script src="./main.js"></script>
+            <div class="format-row">
+              <span class="format-row__icon" title="eBook" aria-label="eBook"><i class="fa-solid fa-tablet-screen-button" aria-hidden="true"></i></span>
+              <div class="format-row__links">
+                <a class="retailer" href="https://www.amazon.com/gp/product/B0FBF72MZS" target="_blank" rel="noopener" aria-label="Buy the Paths into Darkness and Light eBook on Amazon Kindle"><i class="fa-brands fa-amazon" aria-hidden="true"></i></a>
+                <a class="retailer" href="http://books.apple.com/us/book/id6746663440" target="_blank" rel="noopener" aria-label="Buy the Paths into Darkness and Light eBook on Apple Books"><i class="fa-brands fa-apple" aria-hidden="true"></i></a>
+              </div>
+            </div>
+            <div class="format-row format-row--soon">
+              <span class="format-row__icon" title="Audiobook" aria-label="Audiobook"><i class="fa-solid fa-headphones" aria-hidden="true"></i></span>
+              <span class="format-row__soon">Audio coming late 2026</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Book Two — Labyrinths of Radiance and Shadow -->
+      <article class="tome" id="labyrinths-of-radiance-and-shadow">
+        <div class="tome__cover">
+          <img src="assets/images/site/cover-labyrinths.jpg"
+               alt="Labyrinths of Radiance and Shadow — book cover" />
+        </div>
+        <div class="tome__body">
+          <p class="tome__no">Episode II</p>
+          <h3 class="tome__title">Labyrinths of Radiance and Shadow</h3>
+          <p class="credits">By Jeffrey Hallett · Illustrated by Jessica Nagel</p>
+          <div class="tome__desc-wrap" data-expand>
+            <div class="tome__desc" id="desc-labyrinths">
+              <p>It's been over a year since Beacon appeared in Crystal Bay, and while her
+                impact is generally regarded as a boon to the city, Tricia is skeptical
+                that she's truly making the difference she had intended.</p>
+              <p>Her commitment will be tested, though, when a series of mysterious
+                disappearances thrusts her into the center of a conspiracy that forces her
+                to more closely examine the source of her powers and prevent nefarious
+                forces at work from using them to threaten the very world she's sworn to
+                protect.</p>
+            </div>
+            <button class="tome__more" type="button" aria-expanded="false" aria-controls="desc-labyrinths">Read more</button>
+          </div>
+
+          <!-- ══════════ CHARACTER ART — LABYRINTHS (Episode II) ════════════════
+               ✎ EDIT — same rules as the Paths strip above: swap a src, delete a
+               line to remove, copy a line to add. Files live in
+               assets/images/site/art/. Write alt="..." as a description —
+               it doubles as the caption in the enlarged view.
+               ═══════════════════════════════════════════════════════════════ -->
+          <p class="tome__art-label">From the Pages</p>
+          <div class="tome__art" aria-label="Character art from Labyrinths of Radiance and Shadow">
+            <img src="assets/images/site/art/loras-izzy.jpg" alt="Character art: Izzy" loading="lazy" />
+            <img src="assets/images/site/art/loras-escape.jpg" alt="Character art: the escape" loading="lazy" />
+            <img src="assets/images/site/art/loras-reflections.jpg" alt="Character art: Tricia in reflection" loading="lazy" />
+            <img src="assets/images/site/art/loras-returns.jpg" alt="Character art: Beacon returns" loading="lazy" />
+          </div>
+          <!-- ══════════ END CHARACTER ART — LABYRINTHS ══════════ -->
+
+          <div class="tome__formats">
+            <div class="format-row">
+              <span class="format-row__icon" title="Print" aria-label="Print"><i class="fa-solid fa-book" aria-hidden="true"></i></span>
+              <div class="format-row__links">
+                <a class="retailer" href="https://www.amazon.com/gp/product/B0FC5Q4GPG" target="_blank" rel="noopener" aria-label="Buy Labyrinths of Radiance and Shadow in print on Amazon"><i class="fa-brands fa-amazon" aria-hidden="true"></i></a>
+                <a class="retailer" href="https://bookshop.org/p/books/labyrinths-of-radiance-and-shadow-jeffrey-hallett/22794772" target="_blank" rel="noopener" aria-label="Buy Labyrinths of Radiance and Shadow in print at Bookshop.org"><img src="assets/images/bookshoporg-icon-2c.png" alt="Bookshop.org" /></a>
+                <a class="retailer" href="https://shop.ingramspark.com/b/084?params=Afioa45zzoSGUmRRKljj0VQQc7QDEpPnye099Pla1P9" target="_blank" rel="noopener" aria-label="Order Labyrinths of Radiance and Shadow in print via IngramSpark"><img src="assets/images/Ingramspark-logo.png" alt="IngramSpark" /></a>
+              </div>
+            </div>
+            <div class="format-row">
+              <span class="format-row__icon" title="eBook" aria-label="eBook"><i class="fa-solid fa-tablet-screen-button" aria-hidden="true"></i></span>
+              <div class="format-row__links">
+                <a class="retailer" href="https://www.amazon.com/gp/product/B0FC5Q4GPG" target="_blank" rel="noopener" aria-label="Buy the Labyrinths of Radiance and Shadow eBook on Amazon Kindle"><i class="fa-brands fa-amazon" aria-hidden="true"></i></a>
+                <a class="retailer" href="http://books.apple.com/us/book/id6746972839" target="_blank" rel="noopener" aria-label="Buy the Labyrinths of Radiance and Shadow eBook on Apple Books"><i class="fa-brands fa-apple" aria-hidden="true"></i></a>
+              </div>
+            </div>
+            <div class="format-row format-row--soon">
+              <span class="format-row__icon" title="Audiobook" aria-label="Audiobook"><i class="fa-solid fa-headphones" aria-hidden="true"></i></span>
+              <span class="format-row__soon">Audio coming late 2026</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Book Three — Convergence of Destiny (upcoming) -->
+      <article class="tome tome--soon" id="convergence-of-destiny">
+        <div class="tome__cover">
+          <img src="assets/images/site/cover-convergence.jpg"
+               alt="Convergence of Destiny — book cover" />
+        </div>
+        <div class="tome__body">
+          <p class="tome__no">Episode III</p>
+          <h3 class="tome__title">Convergence of Destiny</h3>
+          <p class="credits">By Jeffrey Hallett · Illustrated by Jessica Nagel</p>
+          <div class="tome__desc-wrap" data-expand>
+            <div class="tome__desc" id="desc-convergence">
+              <p>In the months since Sorensen's defeat, Tricia is haunted by her time at
+                The Workshop, struggling with the ever-growing knowledge that she is not
+                alone and questioning who she is in a changing world. However, even as she
+                searches for answers, dark powers are once again at work.</p>
+              <p>While Tricia continues to expand her network of allies, including a
+                mysterious stranger from her distant past, The Circle is moving in the
+                shadows, covertly marshaling its forces to unfold a nefarious scheme that
+                leaves Beacon's future, and the very fate of the world, teetering on a
+                razor's edge.</p>
+              <p>To turn the tide, Tricia must finally come to terms with her destiny as
+                Beacon once and for all and leverage her greatest strengths — her heart,
+                her intellect, and her team — to save the ones she loves and prevent the
+                world from plunging into darkness.</p>
+            </div>
+            <button class="tome__more" type="button" aria-expanded="false" aria-controls="desc-convergence">Read more</button>
+          </div>
+
+          <!-- ══════════ CHARACTER ART — CONVERGENCE (Episode III) ══════════════
+               ★ THIS BOOK'S ART STRIP IS BUILT BUT SWITCHED OFF ★
+
+               There's no Convergence art yet, so the strip below is "commented
+               out" — it's written and ready, but the browser skips over it, so
+               nothing shows on the page. Switching it on is a two-step job.
+
+               ── STEP 1: put the real art in place ───────────────────────────
+               Upload the images to  assets/images/site/art/  and edit the
+               four <img> lines below so each src="..." names a real file and each
+               alt="..." describes that picture. Four images is the house style,
+               but any number works — copy or delete <img> lines as needed.
+
+               ── STEP 2: switch the block on ─────────────────────────────────
+               Immediately below this note is a second comment holding the strip.
+               Delete its FIRST line (the one marked DELETE ME) and its LAST line
+               (the other one marked DELETE ME). That's it — the markup between
+               them becomes live, and the scrolling and click-to-enlarge viewer
+               start working straight away. No other file needs touching.
+
+               ⚠ Do Step 1 first. Switching it on while the filenames still say
+               "cod-sample" gives you four broken-image icons — harmless, and
+               fixed by finishing Step 1, but it'll look alarming for a minute.
+               ═══════════════════════════════════════════════════════════════ -->
+
+          <!-- ⬇⬇⬇ DELETE ME — this line, to switch the art strip on ⬇⬇⬇
+          <p class="tome__art-label">From the Pages</p>
+          <div class="tome__art" aria-label="Character art from Convergence of Destiny">
+            <img src="assets/images/site/art/cod-sample-1.jpg" alt="Character art from Convergence of Destiny" loading="lazy" />
+            <img src="assets/images/site/art/cod-sample-2.jpg" alt="Character art from Convergence of Destiny" loading="lazy" />
+            <img src="assets/images/site/art/cod-sample-3.jpg" alt="Character art from Convergence of Destiny" loading="lazy" />
+            <img src="assets/images/site/art/cod-sample-4.jpg" alt="Character art from Convergence of Destiny" loading="lazy" />
+          </div>
+          ⬆⬆⬆ DELETE ME — this line too ⬆⬆⬆ -->
+
+          <!-- ✎ EDIT — Convergence has no buy links yet, just a release note.
+               Change the date by editing the words below.
+
+               WHEN IT LAUNCHES: replace this whole <div class="tome__formats
+               tome__formats--soon"> block with a copy of the <div class="tome__
+               formats"> block from the Paths or Labyrinths card above, then swap
+               in the new retailer URLs. Dropping the "--soon" from the class is
+               what turns off the greyed-out styling. -->
+          <div class="tome__formats tome__formats--soon">
+            <p class="tome__coming"><i class="fa-solid fa-hourglass-half" aria-hidden="true"></i> Coming Fall 2026</p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ================= TESTIMONIALS ================= -->
+  <section class="praise">
+    <div class="section-head">
+      <p class="eyebrow">Praise for the Series</p>
+      <h2 class="section-title">What Readers Are Saying</h2>
+    </div>
+
+    <div class="praise__grid">
+      <!-- ✎ EDIT — Each quote is one <figure class="quote-card">. Inside it:
+             <div class="stars">              five star icons — delete <i> tags for
+                                              a lower rating
+             <blockquote>                     the quote itself
+             <span class="quote-card__book">  which book it's about
+             then the source line             e.g. "Reader's Favorite, 2025"
+
+           Cards are grouped by book (Paths first, then Labyrinths) and oldest
+           award first within each book. To keep that order, add a new card next
+           to its book's existing ones rather than at the end.
+
+           The grid re-flows on its own — 2, 4, 7 cards all lay out fine. There's
+           a ready-made blank card at the bottom of this list to copy. -->
+      <figure class="quote-card">
+        <span class="quote-card__mark">&rdquo;</span>
+        <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+        <blockquote>A compelling and entertaining blend of science fiction and super
+          heroism, with a strong female protagonist on a captivating journey of
+          self-discovery.</blockquote>
+        <figcaption>
+          <span class="quote-card__book">Paths into Darkness and Light</span>
+          Reader's Choice, 2024
+        </figcaption>
+      </figure>
+
+      <figure class="quote-card">
+        <span class="quote-card__mark">&rdquo;</span>
+        <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+        <blockquote>A strong and intriguing origin story that blends science fiction with
+          real-world tension — exciting, entertaining, and immersive.</blockquote>
+        <figcaption>
+          <span class="quote-card__book">Paths into Darkness and Light</span>
+          Reader's Favorite, 2025
+        </figcaption>
+      </figure>
+
+      <figure class="quote-card">
+        <span class="quote-card__mark">&rdquo;</span>
+        <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+        <blockquote>An electrifying read that will satisfy readers of science fiction,
+          superhero fiction, and psychological thrillers.</blockquote>
+        <figcaption>
+          <span class="quote-card__book">Labyrinths of Radiance and Shadow</span>
+          Reader's Choice, 2025
+        </figcaption>
+      </figure>
+
+      <figure class="quote-card">
+        <span class="quote-card__mark">&rdquo;</span>
+        <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+        <blockquote>Talent at humanizing superheroes and showing how monstrous humans can
+          be is second to none. Very highly recommend.</blockquote>
+        <figcaption>
+          <span class="quote-card__book">Labyrinths of Radiance and Shadow</span>
+          Reader's Favorite, 2025
+        </figcaption>
+      </figure>
+
+      <!-- ══════════ ▣ TEMPLATE — ADDING A QUOTE ═══════════════════════════════
+           To add a new quote card:
+             1. Copy the whole block below, including both DELETE ME lines.
+             2. Paste the copy up above, next to the other cards for that book.
+             3. In your pasted copy, delete the two DELETE ME lines.
+             4. Fill in the quote, the book title, and the source line.
+           Leave the original template down here untouched so it's available next
+           time. Repeat as often as you like — the grid handles any number.
+           ═══════════════════════════════════════════════════════════════════ -->
+
+      <!-- ⬇⬇⬇ DELETE ME — this line ⬇⬇⬇
+      <figure class="quote-card">
+        <span class="quote-card__mark">&rdquo;</span>
+        <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+        <blockquote>QUOTE TEXT GOES HERE.</blockquote>
+        <figcaption>
+          <span class="quote-card__book">BOOK TITLE GOES HERE</span>
+          SOURCE, YEAR
+        </figcaption>
+      </figure>
+      ⬆⬆⬆ DELETE ME — this line too ⬆⬆⬆ -->
+    </div>
+
+  </section>
+
+  <!-- ================= AWARDS & RECOGNITION ================= -->
+  <section class="awards" id="awards">
+    <div class="section-head">
+      <p class="eyebrow eyebrow--gold">Awards &amp; Recognition</p>
+      <h2 class="section-title section-title--light">Honored Across the Series</h2>
+      <p class="section-lede">The Beacon of Hope series has earned recognition from Reader's
+        Favorite and the Readers' Choice Book Awards.</p>
+    </div>
+
+    <!-- ══════════ AWARDS — EDITING AND ADDING ═══════════════════════════════
+         ── ANATOMY OF AN AWARD CARD ────────────────────────────────────────
+           <img class="award-card__badge">   the seal image
+           <span class="award-card__name">   the awarding body, e.g. Reader's Favorite
+           <span class="award-card__sub">    the award + year
+           <span class="award-card__note">   optional italic footnote (only the
+                                             Illustration Award uses one today)
+           <div class="award-card__links">   one link per book that won it
+
+         ── THE COVERAGE LINKS ──────────────────────────────────────────────
+         Each link points at that award's official review or announcement page and
+         is labelled with the book's title. To repoint one, edit its href. To add
+         another book to the same award, copy an existing
+         <a class="link-caps award-card__link" ...>Book Title</a> line. They stack
+         and style themselves — underline plus a small external-link arrow.
+         The Reader's Favorite Five-Star went to BOTH books, which is why that card
+         carries two links.
+
+         ⚠ The Labyrinths Reader's Favorite review page sits behind a login, so
+         that one link deliberately points at a PDF we host ourselves
+         (assets/reviews/labyrinths-rf-review.pdf) rather than a live URL. If that
+         page ever opens up publicly, swap in the real link.
+
+         ── ADDING A NEW AWARD ──────────────────────────────────────────────
+         There's a ready-made blank card just below the four live ones. Badge
+         images go in assets/images/site/badges/ — use a PNG with a
+         transparent background, roughly square, around 256px. It gets displayed
+         in a 128px box, so anything much larger is wasted weight.
+
+         ⚠ THE ROW FITS FOUR. The grid is set to exactly four across on desktop,
+         so a fifth award will start a second row on its own and look lopsided.
+         Everything still works — it's purely cosmetic — but drop Blake a line if
+         you add a fifth and he'll rebalance the grid; it's a one-line fix.
+
+         ⚠ Only ONE card should carry class="award-card award-card--featured".
+         That's what gives the Illustration Award its gold halo. Putting it on
+         two cards makes both look ordinary. To move the emphasis to a different
+         award, remove --featured from the current card and add it to the new one.
+         ═══════════════════════════════════════════════════════════════════ -->
+    <div class="awards__grid">
+      <figure class="award-card">
+        <img class="award-card__badge" src="assets/images/site/badges/badge-rf-5star.png"
+             alt="Reader's Favorite Five-Star Award 2025 seal" />
+        <figcaption>
+          <span class="award-card__name">Reader's Favorite</span>
+          <span class="award-card__sub">Five-Star Award, 2025</span>
+        </figcaption>
+        <div class="award-card__links">
+          <a class="link-caps award-card__link" href="https://readersfavorite.com/book-review/paths-into-darkness-and-light" target="_blank" rel="noopener">Paths into Darkness and Light</a>
+          <a class="link-caps award-card__link" href="assets/reviews/labyrinths-rf-review.pdf" target="_blank" rel="noopener">Labyrinths of Radiance and Shadow</a>
+        </div>
+      </figure>
+
+      <figure class="award-card award-card--featured">
+        <img class="award-card__badge" src="assets/images/site/badges/badge-rf-illustration.png"
+             alt="Reader's Favorite Illustration Award for Fiction 2025 seal" />
+        <figcaption>
+          <span class="award-card__name">Reader's Favorite</span>
+          <span class="award-card__sub">Illustration Award for Fiction, 2025</span>
+          <span class="award-card__note">Judged by a former Disney animation director</span>
+        </figcaption>
+        <div class="award-card__links">
+          <a class="link-caps award-card__link" href="https://readersfavorite.com/book-review/paths-into-darkness-and-light" target="_blank" rel="noopener">Paths into Darkness and Light</a>
+        </div>
+      </figure>
+
+      <figure class="award-card">
+        <img class="award-card__badge" src="assets/images/site/badges/badge-rc-5star.png"
+             alt="Readers' Choice Five-Star Award 2025 seal" />
+        <figcaption>
+          <span class="award-card__name">Readers' Choice</span>
+          <span class="award-card__sub">Five-Star Award, 2025</span>
+        </figcaption>
+        <div class="award-card__links">
+          <a class="link-caps award-card__link" href="https://www.readerschoicebookawards.com/adult/jeffrey-hallett/labyrinths-of-radiance-and-shadow" target="_blank" rel="noopener">Labyrinths of Radiance and Shadow</a>
+        </div>
+      </figure>
+
+      <figure class="award-card">
+        <img class="award-card__badge" src="assets/images/site/badges/badge-rc-finalist-2024.png"
+             alt="Readers' Choice Book Awards Finalist 2024 seal" />
+        <figcaption>
+          <span class="award-card__name">Readers' Choice</span>
+          <span class="award-card__sub">Book Awards Finalist, 2024</span>
+        </figcaption>
+        <div class="award-card__links">
+          <a class="link-caps award-card__link" href="https://www.readerschoicebookawards.com/adult/jeffrey-hallett/paths-into-darkness-and-light" target="_blank" rel="noopener">Paths into Darkness and Light</a>
+        </div>
+      </figure>
+
+      <!-- ══════════ ▣ TEMPLATE — ADDING AN AWARD ═══════════════════════════
+           Same routine as the quote template:
+             1. Copy the block below, including both DELETE ME lines.
+             2. Paste the copy just above this comment.
+             3. In your pasted copy, delete the two DELETE ME lines.
+             4. Fill in the badge filename, the awarding body, the award + year,
+                and one coverage link per book that won it.
+           Want the small italic footnote too (like the Disney line on the
+           Illustration Award)? Add this line inside <figcaption>, right after the
+           award-card__sub line:
+             <span class="award-card__note">Your footnote text</span>
+           Leave the original template here for next time.
+           ═══════════════════════════════════════════════════════════════ -->
+
+      <!-- ⬇⬇⬇ DELETE ME — this line ⬇⬇⬇
+      <figure class="award-card">
+        <img class="award-card__badge" src="assets/images/site/badges/BADGE-FILENAME.png"
+             alt="DESCRIBE THE SEAL, e.g. Best Indie Book Award 2027 seal" />
+        <figcaption>
+          <span class="award-card__name">AWARDING BODY</span>
+          <span class="award-card__sub">AWARD NAME, YEAR</span>
+        </figcaption>
+        <div class="award-card__links">
+          <a class="link-caps award-card__link" href="https://LINK-TO-THE-REVIEW-PAGE" target="_blank" rel="noopener">BOOK TITLE</a>
+        </div>
+      </figure>
+      ⬆⬆⬆ DELETE ME — this line too ⬆⬆⬆ -->
+    </div>
+  </section>
+
+  <!-- ================= MASTER OF SCRIBE ================= -->
+  <!-- ✎ EDIT — Jeff's bio and author photo.
+         • Bio paragraphs: one <p>...</p> each, add or remove freely.
+         • Photo: assets/images/site/author-hallett.png
+         • Socials: currently Instagram + Threads. To change where one points,
+           edit its href. To add another (say Bluesky or Facebook), copy an
+           <a class="social"> line, change the href, the aria-label, and the icon
+           class — icon names are at fontawesome.com/icons, free set only.
+         • Press mentions: see the note further down in this section. -->
+  <section class="scribe" id="scribe">
+    <div class="scribe__inner">
+      <div class="scribe__body">
+        <p class="eyebrow eyebrow--gold">Master of Scribe</p>
+        <h2 class="section-title scribe__name">Jeffrey Hallett</h2>
+        <p>Jeff is originally from upstate New York and has been an enthusiastic follower of
+          science fiction, superhero, and fantasy literature since early childhood. After a
+          short stint in Wisconsin, he settled in Northern California, where his career
+          focused on high-technology product development and, more recently, consulting on
+          organizational and team transformation.</p>
+        <p>In his writing and his work, Jeff draws inspiration from the human condition — how
+          we can each help one another embrace our strengths, learn from life's
+          opportunities, and become the best versions of ourselves.</p>
+        <p>He also enjoys music, do-it-yourself projects, and the outdoors. Watching the sun
+          rise from the summit of Mt. Kilimanjaro remains one of his defining experiences.</p>
+
+        <div class="scribe__socials" aria-label="Jeffrey Hallett on social media">
+          <a class="social" href="https://www.instagram.com/jeffreyhallett" target="_blank" rel="noopener" aria-label="Jeffrey Hallett on Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+          <a class="social" href="https://www.threads.net/@jeffreyhallett" target="_blank" rel="noopener" aria-label="Jeffrey Hallett on Threads"><i class="fa-brands fa-threads" aria-hidden="true"></i></a>
+        </div>
+
+        <!-- ══════════ ▣ PRESS MENTIONS — EDITING AND ADDING ══════════════════
+             Each mention is one <a class="press-link">. Two flavours are in use:
+               • a live article  → href is the web address
+               • a hosted PDF    → href points into assets/press/, and the visible
+                                   text ends with "(PDF)" so readers know
+             To add one, copy an existing <a class="press-link"> ... </a> block and
+             change the href and the text. Keep the pattern:
+                "Headline" — Publication, Month Year
+             The headline sits in curly quotes (&ldquo; &rdquo;) and the publication
+             name in <em>italics</em>.
+
+             For a PDF: upload it to assets/press/ first, keep it under ~2 MB, and
+             point the href at assets/press/your-file.pdf
+             ═══════════════════════════════════════════════════════════════ -->
+        <div class="scribe__press">
+          <p class="scribe__press-label">In the Press</p>
+          <a class="press-link" href="assets/press/citizen-2026-hallett-third-novel.pdf" target="_blank" rel="noopener">
+            <i class="fa-solid fa-newspaper" aria-hidden="true"></i>
+            <span>&ldquo;Southern Cayuga alum Hallett to publish third sci-fi novel&rdquo; — <em>The Citizen</em>, March 2026 (PDF)</span>
+          </a>
+          <a class="press-link" href="https://www.literaturmagazin-bremen.de/beitraege/63-konsum/ulrike-kleinert-schreiben-im-silicon-valley" target="_blank" rel="noopener">
+            <i class="fa-solid fa-newspaper" aria-hidden="true"></i>
+            <span>&ldquo;Schreiben im Silicon Valley&rdquo; — <em>Literaturmagazin Bremen</em>, June 2026</span>
+          </a>
+        </div>
+      </div>
+      <div class="scribe__photo">
+        <img src="assets/images/site/author-hallett.png" alt="Jeffrey Hallett, author" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CONTACT / ENTER THE TROVE ================= -->
+  <!-- ✎ EDIT — The contact band.
+       ⚠ THE EMAIL ADDRESS APPEARS TWICE-ISH: the "Send an Owl" button below uses
+       a mailto: link, and the address is baked into that href. If the address ever
+       changes, update it here:
+         href="mailto:info.dragonstrove@icloud.com?subject=Sending%20an%20owl"
+       The ?subject= part pre-fills the subject line of the reader's email. %20 is
+       simply how a space is written inside a web address — keep them.
+       The blog button and the italic note under it both point at Substack. -->
+  <section class="cta-band" id="contact">
+    <h2 class="cta-band__title">Enter the Trove</h2>
+    <p class="cta-band__text">Send an owl for signings, appearances, or just to share your
+      thoughts on the Beacon of Hope series — and be first to hear about new releases and
+      upcoming events.</p>
+    <div class="cta-band__actions">
+      <a class="btn btn--gold btn--lg" href="mailto:info.dragonstrove@icloud.com?subject=Sending%20an%20owl">
+        <i class="fa-solid fa-feather-pointed" aria-hidden="true"></i>&nbsp;Send an Owl
+      </a>
+      <a class="btn btn--ghost-gold btn--lg" href="https://jeffreyhallett.substack.com" target="_blank" rel="noopener">
+        <i class="fa-solid fa-book-open" aria-hidden="true"></i>&nbsp;Read the Blog
+      </a>
+    </div>
+    <p class="cta-band__blognote"><em>Missteps &amp; Musings: Gems from the Dragon's
+      Trove</em> — the official blog of Jeffrey Hallett, on Substack.</p>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <!-- ✎ EDIT — Footer menu, socials, and the copyright line at the very bottom.
+       The footer menu mirrors the top nav plus a Blog link; if you rename a
+       section up top, rename it here too so the two stay in step.
+       ⚠ The copyright year is typed in by hand — it won't roll over on its own.
+       Worth updating each January. -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <a class="brand brand--footer" href="#top" aria-label="Dragon's Trove Press — home">
+        <img class="brand__logo" src="assets/images/Logo.png" alt="Dragon's Trove Press" />
+      </a>
+      <nav class="footer__links" aria-label="Footer">
+        <a href="#top">Home</a>
+        <a href="#story">The Story</a>
+        <a href="#beacon-of-hope">Our Tomes</a>
+        <a href="#scribe">Master of Scribe</a>
+        <a href="https://jeffreyhallett.substack.com" target="_blank" rel="noopener">Blog</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="footer__social" aria-label="Social media">
+        <a class="social social--footer" href="https://www.instagram.com/jeffreyhallett" target="_blank" rel="noopener" aria-label="Jeffrey Hallett on Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+        <a class="social social--footer" href="https://www.threads.net/@jeffreyhallett" target="_blank" rel="noopener" aria-label="Jeffrey Hallett on Threads"><i class="fa-brands fa-threads" aria-hidden="true"></i></a>
+      </div>
+    </div>
+    <p class="footer__copy">© 2026 Dragon's Trove · Beacon of Hope by Jeffrey Hallett</p>
+  </footer>
+
+  <script src="main.js"></script>
 </body>
 </html>
