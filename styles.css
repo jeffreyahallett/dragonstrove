@@ -1,653 +1,1134 @@
-*, *::before, *::after {
-    box-sizing: border-box;
+/* =============================================================
+   Dragon's Trove Press — styling
+   Vanilla CSS, no build step.
+
+   Jeff — this file controls how things LOOK, not what they SAY. Text and
+   images all live in index.html; you'll spend most of your time there.
+
+   If you do want to change an appearance, the :root block immediately
+   below is the safest place to do it. Those --names are the brand's
+   colours and fonts, defined once and reused everywhere. Change --gold
+   in that one spot and every gold heading, button and border across the
+   whole site follows suit. That's the intended way to re-skin things.
+
+   ⚠ Further down the file are the rules for individual components. Those
+   are more interconnected than they look — a change that fixes one screen
+   size often breaks another. If something needs adjusting down there, it's
+   usually quicker to ask Blake than to hunt for it.
+
+   ⚠ One deliberate choice worth knowing about: near the bottom there's a
+   "prefers-reduced-motion" block that switches off all animation for
+   visitors who've asked their device for less movement (an accessibility
+   setting). Please leave that in place.
+   ============================================================= */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+:root {
+  /* Brand palette */
+  --gold:        #E9C877;   /* bright gold — wordmark, headings on dark   */
+  --gold-deep:   #C1913C;   /* button gold / borders                       */
+  --gold-dark:   #96692A;   /* deep gold text                              */
+  --navy:        #2A2440;   /* hero gradient, testimonial cards            */
+  --navy-deep:   #1D1930;
+  --green:       #26402C;   /* forest — series band, footer, nav           */
+  --green-deep:  #1C2B28;
+  --green-dark:  #182b1d;
+  --parchment:   #FBF7EF;   /* light page background                       */
+  --parchment-2: #F2E9D7;   /* warm section background                     */
+  --cream:       #F7F3EA;   /* card surface                                */
+  --ink:         #262019;   /* darkest text                                */
+  --ink-navy:    #2A2440;   /* headings on light                           */
+  --body:        #544835;   /* body copy on light                          */
+  --body-soft:   #6B5A37;
+  --purple:      #7E4AA6;   /* work-in-progress accent                     */
+  --purple-deep: #5F3580;
+
+  --maxw: 1180px;
+  --radius: 16px;
+  --radius-lg: 22px;
+  --shadow-sm: 0 10px 30px rgba(60, 40, 15, 0.12);
+  --shadow-md: 0 24px 60px rgba(42, 36, 64, 0.22);
+  --shadow-cover: 0 30px 60px rgba(0, 0, 0, 0.45);
+
+  --font-head: 'Cinzel', Georgia, serif;
+  --font-deco: 'Cinzel Decorative', 'Cinzel', serif;
+  --font-body: 'Spectral', Georgia, serif;
 }
 
-/* Color Variables */
-:root {
-    --green: #234729;
-    --gold: #FFB900;
-}
+html { scroll-behavior: smooth; }
+
+/* Deep-link anchors (book cards + sections) clear the sticky nav so a linked
+   book/series lands below the bar instead of behind it — matters most on phones. */
+.tome,
+section[id] { scroll-margin-top: 5rem; }
 
 body {
-    margin: 0;
-    font-family: "Source Sans 3", sans-serif;
-
-      /* testing parchment background */
-      background-image: url("./assets/images/mbp16_parchment_1_overlay.jpg");
-      background-size: contain;
-
-      overscroll-behavior: none;
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--body);
+  background: var(--parchment);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
 
+/* ---------- Shared type helpers ---------- */
+.eyebrow {
+  font-family: var(--font-head);
+  text-transform: uppercase;
+  letter-spacing: 0.32em;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--gold-dark);
+  margin: 0 0 0.9rem;
+}
+.eyebrow--gold { color: var(--gold); }
 
-h1,
-h2,
-h3, 
-nav a {
-    font-family: "Milonga", serif;
+.section-head { text-align: center; max-width: 720px; margin: 0 auto 3rem; padding: 0 1.25rem; }
+
+.section-title {
+  font-family: var(--font-head);
+  font-weight: 700;
+  color: var(--ink-navy);
+  font-size: clamp(1.9rem, 4vw, 2.9rem);
+  letter-spacing: 0.02em;
+  margin: 0;
+  line-height: 1.12;
+}
+.section-title--light { color: var(--gold); }
+
+.section-lede {
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--cream);
+  margin: 1.1rem auto 0;
+  max-width: 34ch;
 }
 
-/* Utility Outline Classes */
-
-/* .outline-hot-pink {
-    border: 5px dotted hotpink;
+.credits {
+  font-size: 0.82rem;
+  letter-spacing: 0.02em;
+  color: var(--body-soft);
+  margin: 0.35rem 0 1rem;
 }
 
-.outline-lime-green {
-    border: 5px dotted limegreen;
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: 0.82rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.85rem 1.5rem;
+  border-radius: 10px;
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease, color 0.18s ease;
+  white-space: nowrap;
+}
+.btn:hover { transform: translateY(-2px); }
+
+.btn--gold {
+  background: linear-gradient(180deg, #E9C877 0%, #C1913C 100%);
+  color: #3a2c08;
+  box-shadow: 0 10px 24px rgba(193, 145, 60, 0.35);
+}
+.btn--gold:hover { box-shadow: 0 14px 30px rgba(193, 145, 60, 0.5); }
+
+.btn--ghost-gold {
+  background: transparent;
+  color: var(--gold);
+  border-color: rgba(233, 200, 119, 0.55);
+}
+.btn--ghost-gold:hover { background: rgba(233, 200, 119, 0.1); }
+
+.btn--green {
+  background: var(--green);
+  color: var(--parchment);
+  border-color: var(--green);
+}
+.btn--green:hover { background: var(--green-deep); }
+
+.btn--outline {
+  background: transparent;
+  color: var(--green);
+  border-color: rgba(38, 64, 44, 0.4);
+}
+.btn--outline:hover { background: rgba(38, 64, 44, 0.06); }
+
+.btn--sm { padding: 0.6rem 1.1rem; font-size: 0.74rem; }
+.btn--xs { padding: 0.5rem 0.9rem; font-size: 0.68rem; letter-spacing: 0.1em; border-radius: 8px; }
+.btn--lg { padding: 1rem 2rem; font-size: 0.9rem; }
+
+.link-caps {
+  font-family: var(--font-head);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--gold-dark);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.18s ease;
+}
+.link-caps:hover { border-bottom-color: var(--gold-deep); }
+
+.pill {
+  display: inline-block;
+  font-family: var(--font-head);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.66rem;
+  font-weight: 600;
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+}
+.pill--purple { background: rgba(126, 74, 166, 0.15); color: var(--purple-deep); }
+
+/* ---------- Brand / logo ---------- */
+.brand { display: inline-flex; align-items: center; }
+.brand__logo {
+  height: 42px;
+  width: auto;
+  display: block;
+}
+.brand--footer .brand__logo { height: 46px; }
+
+/* =============================================================
+   NAV
+   ============================================================= */
+/* dragon-scale texture — a nod to the original design. The PNG is light
+   scales on a transparent ground, so it layers straight over the green.
+   Kept on ::before so its opacity can gently "breathe" (see keyframes),
+   giving the bar a slow living-scales pulse. */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: linear-gradient(180deg, #2c4a33 0%, #223a29 100%);
+  border-bottom: 1px solid rgba(233, 200, 119, 0.18);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.18);
+}
+.nav::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("assets/images/Dragon Scale Foley 01.png") repeat;
+  background-size: 340px auto;          /* larger, more legible scales */
+  pointer-events: none;
+  opacity: 0.4;
+  animation: nav-scale-pulse 6s ease-in-out infinite;
+}
+@keyframes nav-scale-pulse {
+  0%, 100% { opacity: 0.30; }
+  50%      { opacity: 0.52; }
+}
+.nav__inner {
+  position: relative;
+  z-index: 1;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0.7rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav__links { display: flex; align-items: center; gap: 2rem; }
+.nav__links > a:not(.btn) {
+  font-family: var(--font-head);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.76rem;
+  font-weight: 500;
+  color: #EFE3C2;
+  transition: color 0.18s ease;
+}
+.nav__links > a:not(.btn):hover { color: var(--gold); }
+
+.nav__toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--gold);
+  font-size: 1.35rem;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
 }
 
-.outline-purple {
-    border: 5px dotted purple;
-} */
-
-.drop-shadow {
-    /* box shadow --- revisit laters */
-    box-shadow: 0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-}
-
-/* util classes end */
-
-/* Nav */
-
-.navbar,
-.navbar * {
-  transition: 500ms;
-}
-.navbar {
-    position: sticky;
-    top: 0;
-}
-
-.navbar.sticking {
-    
-    /* padding: 0px 20px; */
-    padding: 0px 1.25em;
-}
-.navbar,
-footer {
-    background-image: url(assets/images/Dragon\ Scale\ Foley\ 01.png);
-    background-color: var(--green);
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    padding: 2.5em;
-}
-
-nav ul {
-    display: flex;
-    gap: 2em;
-    align-items: center;
-}
-
-nav li {
-    list-style: none;
-}
-
-nav a {
-    text-decoration: none;
-    color: var(--gold);
-    text-shadow: 1px 1px 2px #000;
-    /* outline stroke for text is experimental -- might not be the best approach? */
-    -webkit-text-stroke: .5px #000;
-
-    font-size: 2em;
-}
-
-nav button {
-    font-family: "Milonga", serif;
-    /* font-size: 24px; */
-    font-size: 1.5rem;
-    /* NOTE: CHANGE THIS TO AN OFF-BLACK */
-    color: #000;
-    background: var(--gold);
-    border: none;
-    /* padding: 12px 12px; */
-    padding: .75rem .75rem;
-    cursor: pointer;
-}
-
-nav button:hover {
-    background-color: #ffd45d;
-}
-
-nav a:hover {
-   color: #ffd45d;
-}
-
-/* 
-    Mobile Nav Menu Icon 
-
-    - by default will need to be hidden
-*/
-
-.mobile-menu-icon {
-    /* default this should be hidden */
-    display: none;
-    
-    color: #FFB900;
-    font-size: 1.75rem;
-    /* using this to create a similar effect to the nav links */
-    
-    text-shadow: 1px 1px 2px #000;
-    /* outline stroke for text is experimental -- might not be the best approach? */
-    -webkit-text-stroke: .5px #000;
-}
-
-.mobile-close-icon {display:none;}
-
-.navbar-logo-mobile-menu {
-    display: flex;
-    align-items: center;
-}
-
-/* Main */
-main {
-    /* padding: 0 72px; */
-    padding: 0 4.5rem;
-}
-
-/* Sections */
-
-section {
-    
-    /* margin-bottom: 148px; */
-    margin-bottom: 9.25rem;
-    
-    /* scroll-margin-top: 200px; */
-    scroll-margin-top: 12.5rem;
-
-}
-
-
-
-/* Hero */
-
-/*
-    Questions about image fill backgrounds:
-
-    - Is this accessible or the best approach for a11y?
-    - Is this the best pratice way for me to achieve this given the textured background for the entire website?
-
-*/
-
+/* =============================================================
+   HERO
+   ============================================================= */
 .hero {
-    background-image: url(assets/images/DragonsTrovePress-Watermark-Hero-Logo.png);
-    background-repeat: no-repeat;
-    /* Turning off contain since this increases the img size */
-    /* background-size: contain; */
-    background-position: center;
+  background:
+    radial-gradient(120% 90% at 80% 10%, rgba(38, 64, 44, 0.55) 0%, rgba(38, 64, 44, 0) 55%),
+    linear-gradient(135deg, #201b33 0%, #2a2440 40%, #24382b 100%);
+  color: #EDE6D6;
+  padding: clamp(3rem, 7vw, 6rem) 1.5rem clamp(3.5rem, 8vw, 6.5rem);
+  overflow: hidden;
+}
+.hero__inner {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: clamp(2rem, 6vw, 5rem);
+  align-items: center;
+}
+.hero__cover {
+  perspective: 1400px;
+  display: flex;
+  justify-content: center;
+}
+.hero__cover img {
+  width: min(320px, 80%);
+  border-radius: 6px;
+  box-shadow: var(--shadow-cover);
+  transform: rotateY(-14deg) rotateZ(-1.5deg);
+  transition: transform 0.5s ease;
+}
+.hero__cover img:hover { transform: rotateY(-7deg) rotateZ(0deg); }
 
-    /* padding: 200px; */
-    padding: 12.5rem;
+.hero__title {
+  font-family: var(--font-head);
+  font-weight: 700;
+  color: var(--gold);
+  font-size: clamp(2.6rem, 6vw, 4.4rem);
+  line-height: 1.02;
+  letter-spacing: 0.02em;
+  margin: 0.2rem 0 0.6rem;
+}
+.hero__subtitle {
+  font-style: italic;
+  font-size: clamp(1.1rem, 2.4vw, 1.5rem);
+  color: #E7DCC0;
+  margin: 0 0 1.6rem;
+}
+.hero__quote {
+  margin: 0 0 2rem;
+  padding-left: 1.1rem;
+  border-left: 2px solid rgba(233, 200, 119, 0.4);
+  font-size: 1.05rem;
+  color: #DCD3BE;
+  max-width: 46ch;
+}
+.hero__quote cite {
+  display: block;
+  margin-top: 0.7rem;
+  font-style: normal;
+  font-family: var(--font-head);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.72rem;
+  color: var(--gold);
+}
+.hero__cta { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 2.4rem; }
 
-    text-align: center;
+.hero__badges { display: flex; flex-wrap: wrap; gap: 2rem; padding-top: 1.6rem; border-top: 1px solid rgba(233, 200, 119, 0.18); }
+
+/* mini award badge (icon + 2 lines) */
+.minibadge, .award { display: inline-flex; align-items: center; gap: 0.75rem; }
+.minibadge > i, .award > i {
+  width: 40px; height: 40px;
+  border: 1.5px solid rgba(233, 200, 119, 0.55);
+  border-radius: 50%;
+  display: grid; place-items: center;
+  color: var(--gold);
+  font-size: 0.95rem;
+  flex-shrink: 0;
+}
+.minibadge > span, .award > span {
+  display: flex; flex-direction: column;
+  font-family: var(--font-head);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.64rem;
+  line-height: 1.5;
+  color: #CDBE97;
+}
+.minibadge strong, .award strong { color: var(--gold); font-weight: 600; }
+
+/* =============================================================
+   OFFICIAL TRAILER
+   ============================================================= */
+.trailer {
+  background: linear-gradient(180deg, #1D1930 0%, #241f38 100%);
+  padding: clamp(3.5rem, 8vw, 6rem) 1.5rem;
+}
+.trailer .section-lede { max-width: 62ch; }
+.trailer__frame {
+  max-width: 900px;
+  margin: 0 auto;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid rgba(233, 200, 119, 0.28);
+  box-shadow: var(--shadow-cover);
+  background: #000;
+}
+.trailer__frame iframe { width: 100%; height: 100%; border: 0; display: block; }
+.trailer__poster {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+.trailer__poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+.trailer__poster:hover img { transform: scale(1.03); }
+.trailer__play {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 76px; height: 76px;
+  border-radius: 50%;
+  display: grid; place-items: center;
+  background: linear-gradient(180deg, #E9C877 0%, #C1913C 100%);
+  color: #3a2c08;
+  font-size: 1.5rem;
+  padding-left: 5px;                    /* optically center the play glyph */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 0 10px rgba(233, 200, 119, 0.18);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.trailer__poster:hover .trailer__play {
+  transform: translate(-50%, -50%) scale(1.08);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.55), 0 0 0 14px rgba(233, 200, 119, 0.24);
 }
 
-.hero-logo {
-    z-index: -1;
+/* =============================================================
+   COMING SOON / THE STORY
+   ============================================================= */
+.coming {
+  background: var(--parchment-2);
+  padding: clamp(3.5rem, 8vw, 6rem) 1.5rem;
+}
+.coming .eyebrow, .coming .section-title { }
+.coming .section-title { color: var(--ink-navy); }
+
+.coming__card {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  background: var(--parchment);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: clamp(1.75rem, 4vw, 3rem);
+  display: grid;
+  grid-template-columns: 0.7fr 1.3fr;
+  gap: clamp(1.75rem, 4vw, 3.5rem);
+  align-items: center;
+}
+.coming__cover img {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: var(--shadow-md);
+}
+.coming__title {
+  font-family: var(--font-head);
+  font-weight: 700;
+  color: var(--ink-navy);
+  font-size: clamp(1.7rem, 3.5vw, 2.4rem);
+  margin: 1rem 0 0.2rem;
+  line-height: 1.1;
+}
+.coming__body p { margin: 0 0 1rem; }
+.coming__actions { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; margin-top: 1.5rem; }
+
+/* =============================================================
+   THE STORY OF DRAGON'S TROVE (ABOUT)
+   ============================================================= */
+.about {
+  background: var(--parchment);
+  padding: clamp(3.5rem, 8vw, 6rem) 1.5rem;
+}
+.about__inner {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: clamp(2rem, 6vw, 5rem);
+  align-items: center;
+}
+.about__title { text-align: left; margin: 0 0 0.6rem; }
+.about__tagline {
+  font-family: var(--font-deco);
+  font-style: italic;
+  color: var(--gold-deep);
+  font-size: clamp(1.1rem, 2.2vw, 1.4rem);
+  line-height: 1.3;
+  margin: 0 0 1.5rem;
+}
+.about__body p { margin: 0 0 1.1rem; color: var(--body); }
+.about__creed {
+  font-style: italic;
+  color: var(--body-soft);
+  border-left: 2px solid var(--gold-deep);
+  padding-left: 1.1rem;
+}
+.about__art img {
+  width: 100%;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+}
+/* transparent artwork (pencil dragon) floats on the parchment — no card frame */
+.about__art--float img {
+  border-radius: 0;
+  box-shadow: none;
+  filter: drop-shadow(0 26px 38px rgba(42, 36, 64, 0.28));
+}
+
+/* =============================================================
+   OUR TOMES / SERIES BAND
+   ============================================================= */
+.series {
+  background:
+    radial-gradient(90% 70% at 50% 0%, rgba(60, 92, 66, 0.5) 0%, rgba(38, 64, 44, 0) 60%),
+    linear-gradient(180deg, #23392a 0%, #1c2f22 100%);
+  padding: clamp(3.5rem, 8vw, 6rem) 1.5rem;
+}
+.series__shop {
+  margin: 1.2rem auto 0;
+  font-family: var(--font-head);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.72rem;
+  color: #CDBE97;
+}
+.series__shop a {
+  color: var(--gold);
+  border-bottom: 1px solid rgba(233, 200, 119, 0.4);
+  transition: border-color 0.18s ease, color 0.18s ease;
+  padding-bottom: 1px;
+}
+.series__shop a:hover { color: #F3DFA8; border-bottom-color: var(--gold); }
+.series__shop span { margin: 0 0.35rem; color: rgba(205, 190, 151, 0.6); }
+
+.series__grid {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
+}
+.tome {
+  background: var(--cream);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+.tome:hover { transform: translateY(-6px); box-shadow: 0 30px 55px rgba(0, 0, 0, 0.45); }
+.tome__cover {
+  background: linear-gradient(180deg, #efe6d0 0%, #e6d9b8 100%);
+  padding: 1.75rem 1.75rem 0;
+  display: flex;
+  justify-content: center;
+}
+.tome__cover img {
+  width: 62%;
+  border-radius: 5px;
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.3);
+  transform: translateY(0.5rem);
+}
+.tome__body {
+  padding: 1.75rem;
+  border-top: 2px solid var(--gold-deep);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.tome__no {
+  font-family: var(--font-head);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.66rem;
+  color: var(--gold-dark);
+  margin: 0 0 0.5rem;
+}
+.tome__title {
+  font-family: var(--font-head);
+  font-weight: 600;
+  color: var(--ink-navy);
+  font-size: 1.2rem;
+  line-height: 1.2;
+  margin: 0;
+}
+
+/* ---- blurb, clamped with a "Read more" expander ---- */
+.tome__desc-wrap { margin-bottom: 1.2rem; }
+.tome__desc {
+  font-size: 0.95rem;
+  color: var(--body);
+  margin: 0;
+}
+.tome__desc p { margin: 0 0 0.8rem; }
+.tome__desc p:last-child { margin-bottom: 0; }
+.tome__desc-wrap[data-expand]:not(.is-open) .tome__desc {
+  max-height: 10.2em;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(180deg, #000 62%, transparent 100%);
+  mask-image: linear-gradient(180deg, #000 62%, transparent 100%);
+}
+.tome__more {
+  margin-top: 0.4rem;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  font-family: var(--font-head);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.66rem;
+  font-weight: 600;
+  color: var(--gold-dark);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.18s ease;
+}
+.tome__more:hover { border-bottom-color: var(--gold-deep); }
+
+/* ---- character-art strip ("From the Pages") ---- */
+.tome__art-label {
+  font-family: var(--font-head);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.62rem;
+  color: var(--body-soft);
+  margin: 0 0 0.5rem;
+}
+.tome__art img {
+  aspect-ratio: 5 / 8;
+  object-fit: cover;
+  border-radius: 6px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18);
+  cursor: zoom-in;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+.tome__art img:hover,
+.tome__art img:focus-visible {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.28);
+}
+
+/* ─── EXPERIMENT: swipeable filmstrip (2-up, scroll-snap) ───
+   Roll back to the small 4-up grid by replacing this block with:
+   .tome__art { display: grid; grid-template-columns: repeat(4, 1fr);
+                gap: 0.5rem; margin-bottom: 1.2rem; }
+   .tome__art img { width: 100%; }                              */
+.tome__art {
+  display: flex;
+  gap: 0.6rem;
+  margin: 0 -0.4rem 1.2rem;
+  padding: 0.25rem 0.4rem 0.6rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(150, 105, 42, 0.35) transparent;
+}
+.tome__art img {
+  flex: 0 0 46%;
+  width: 46%;
+  scroll-snap-align: start;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+/* drag-to-scroll (desktop): closed hand while grabbing; snap pauses so the
+   strip tracks the pointer 1:1, then re-engages on release */
+.tome__art { cursor: grab; }
+.tome__art.is-dragging {
+  cursor: grabbing;
+  scroll-snap-type: none;
+}
+.tome__art.is-dragging img { cursor: grabbing; pointer-events: none; }
+/* ─── END EXPERIMENT ─── */
+
+/* ---- character-art lightbox overlay ---- */
+.lightbox[hidden] { display: none; }
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(20, 16, 32, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1rem;
+}
+.lightbox__stage {
+  margin: 0;
+  max-width: min(86vw, 720px);
+  max-height: 92vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.7rem;
+}
+.lightbox__img {
+  max-width: 100%;
+  max-height: 82vh;
+  border-radius: 10px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+}
+.lightbox__caption {
+  font-family: var(--font-head);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.68rem;
+  color: #CDBE97;
+  text-align: center;
+}
+.lightbox__close,
+.lightbox__nav {
+  flex-shrink: 0;
+  width: 46px; height: 46px;
+  border: 1.5px solid rgba(233, 200, 119, 0.55);
+  border-radius: 50%;
+  background: rgba(42, 36, 64, 0.6);
+  color: var(--gold);
+  font-size: 1.05rem;
+  cursor: pointer;
+  display: grid; place-items: center;
+  transition: background 0.18s ease, transform 0.18s ease;
+}
+.lightbox__close:hover,
+.lightbox__nav:hover { background: rgba(193, 145, 60, 0.45); transform: scale(1.06); }
+.lightbox__close {
+  position: absolute;
+  top: 1.1rem; right: 1.1rem;
+}
+@media (max-width: 640px) {
+  .lightbox { gap: 0.4rem; padding: 0.6rem; }
+  .lightbox__nav { width: 40px; height: 40px; }
+  .lightbox__stage { max-width: 78vw; }
+}
+
+/* ---- format-grouped purchase rows (print / ebook / audio) ---- */
+.tome__formats {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(150, 105, 42, 0.18);
+}
+/* the "coming soon" card has no purchase rows — skip the separator line */
+.tome__formats--soon { border-top: 0; }
+.format-row { display: flex; align-items: center; gap: 0.75rem; }
+.format-row__icon {
+  width: 30px; height: 30px;
+  flex-shrink: 0;
+  display: grid; place-items: center;
+  color: var(--green);
+  font-size: 0.9rem;
+}
+.format-row__links { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+.retailer {
+  width: 36px; height: 30px;
+  display: grid; place-items: center;
+  background: #fff;
+  border: 1px solid rgba(38, 64, 44, 0.22);
+  border-radius: 7px;
+  color: var(--green);
+  font-size: 0.95rem;
+  transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.retailer:hover { transform: translateY(-1px); border-color: var(--gold-deep); box-shadow: var(--shadow-sm); }
+.retailer img { width: 18px; height: 18px; object-fit: contain; }
+.retailer[data-pending] { opacity: 0.5; }
+.format-row__soon {
+  font-family: var(--font-head);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.62rem;
+  color: var(--body-soft);
+}
+.tome__coming {
+  margin: 0;
+  margin-top: auto;
+  padding-top: 1rem;
+  display: flex; align-items: center; gap: 0.5rem;
+  font-family: var(--font-head);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.7rem;
+  color: var(--gold-dark);
+}
+
+/* =============================================================
+   TESTIMONIALS
+   ============================================================= */
+.praise {
+  background: var(--parchment-2);
+  padding: clamp(3.5rem, 8vw, 6rem) 1.5rem;
+}
+.praise__grid {
+  max-width: var(--maxw);
+  margin: 0 auto 3.5rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+.quote-card {
+  position: relative;
+  background: linear-gradient(160deg, #2f2947 0%, #241f38 100%);
+  color: #E0D8C4;
+  border-radius: var(--radius);
+  padding: 2rem 1.75rem 1.75rem;
+  margin: 0;
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+.quote-card__mark {
+  position: absolute;
+  top: 0.4rem; right: 1rem;
+  font-family: var(--font-deco);
+  font-size: 4rem;
+  color: rgba(233, 200, 119, 0.22);
+  line-height: 1;
+}
+.stars { color: var(--gold); font-size: 0.8rem; letter-spacing: 0.15em; margin-bottom: 0.9rem; }
+.quote-card blockquote {
+  margin: 0 0 1.25rem;
+  font-style: italic;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+.quote-card figcaption {
+  font-family: var(--font-head);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.66rem;
+  color: #C9BC98;
+}
+.quote-card__book {
+  display: block;
+  color: var(--gold);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.2rem;
+}
+/* =============================================================
+   AWARDS & RECOGNITION
+   ============================================================= */
+.awards {
+  background: linear-gradient(180deg, #23392a 0%, #1c2f22 100%);
+  padding: clamp(3rem, 7vw, 5rem) 1.5rem;
+}
+.awards__grid {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.75rem;
+}
+.award-card {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.75rem;
+}
+.award-card__badge {
+  width: 128px;
+  height: 128px;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.35));
+}
+.award-card figcaption { display: flex; flex-direction: column; gap: 0.15rem; }
+.award-card__name {
+  font-family: var(--font-head);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: var(--gold);
+}
+.award-card__sub { font-size: 0.82rem; color: #CDBE97; }
+.award-card__note {
+  font-style: italic;
+  font-size: 0.74rem;
+  color: #A99C79;
+  max-width: 22ch;
+  margin: 0.15rem auto 0;
+}
+/* featured award — the Illustration Award for Fiction keeps a gold halo, but the
+   badge is the same 128px box as the others so all four align across breakpoints */
+.award-card--featured .award-card__badge {
+  filter:
+    drop-shadow(0 0 22px rgba(233, 200, 119, 0.38))
+    drop-shadow(0 10px 20px rgba(0, 0, 0, 0.35));
+}
+/* coverage links: stacked (the RF Five-Star card carries one per book).
+   Generous vertical gap + per-link padding keeps the two stacked links from
+   becoming cramped tap targets on mobile. */
+.award-card__links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.85rem;
+  margin-top: 0.2rem;
+}
+.awards .link-caps { color: var(--gold); }
+/* styled as an obvious link: persistent underline + a trailing external-link
+   icon (added below) that signals the link opens off-site */
+.award-card__link {
+  text-align: center;
+  line-height: 1.4;
+  letter-spacing: 0.08em;
+  font-size: 0.66rem;
+  padding: 0.35rem 0.6rem;
+  text-decoration: underline;
+  text-decoration-color: rgba(233, 200, 119, 0.55);
+  text-underline-offset: 0.22em;
+  border-bottom: none;              /* cancel .link-caps' hover border (drew a stray full-width line) */
+  transition: transform 0.18s ease, color 0.18s ease, text-decoration-color 0.18s ease;
+}
+.award-card__link::after {
+  content: "\f08e";                 /* fa external-link (arrow-up-right-from-square) */
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  font-size: 0.8em;
+  margin-left: 0.45em;
+  display: inline-block;            /* keeps the underline off the icon */
+  opacity: 0.85;
+}
+/* hover (desktop): a subtle grow instead of an extra underline */
+.award-card__link:hover,
+.award-card__link:focus-visible {
+  transform: scale(1.06);
+  color: #F3DFA8;
+  text-decoration-color: var(--gold);
+}
+
+/* =============================================================
+   MASTER OF SCRIBE
+   ============================================================= */
+.scribe {
+  background: var(--parchment);
+  padding: clamp(2.75rem, 6vw, 4.5rem) 1.5rem;
+}
+.scribe__inner {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.25fr 0.75fr;
+  gap: clamp(1.75rem, 5vw, 4rem);
+  align-items: center;
+}
+.scribe__name { text-align: left; margin: 0 0 1.1rem; }
+.scribe__body p { margin: 0 0 0.9rem; color: var(--body); font-size: 0.97rem; }
+.scribe__photo img {
+  width: 100%;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+}
+.scribe__socials { display: flex; gap: 0.75rem; margin-top: 1.4rem; }
+.social {
+  width: 40px; height: 40px;
+  display: grid; place-items: center;
+  border: 1.5px solid var(--gold-deep);
+  border-radius: 50%;
+  color: var(--gold-dark);
+  font-size: 1rem;
+  transition: transform 0.15s ease, background 0.15s ease, color 0.15s ease;
+}
+.social:hover { transform: translateY(-2px); background: var(--gold-deep); color: #fff; }
+.social[data-pending] { opacity: 0.6; }
+
+/* ---- In the Press ---- */
+.scribe__press {
+  margin-top: 1.6rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid rgba(150, 105, 42, 0.18);
+}
+.scribe__press-label {
+  font-family: var(--font-head);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.66rem;
+  font-weight: 600;
+  color: var(--gold-dark);
+  margin: 0 0 0.7rem;
+}
+.press-link {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  font-size: 0.9rem;
+  color: var(--body);
+  margin-bottom: 0.55rem;
+  transition: color 0.18s ease;
+}
+.press-link:hover { color: var(--gold-dark); }
+.press-link i { color: var(--gold-deep); font-size: 0.8rem; flex-shrink: 0; }
+
+/* =============================================================
+   CTA BAND / CONTACT
+   ============================================================= */
+.cta-band {
+  background:
+    radial-gradient(100% 120% at 50% 0%, rgba(38, 64, 44, 0.6) 0%, rgba(42, 36, 64, 0) 60%),
+    linear-gradient(135deg, #241f38 0%, #24382b 100%);
+  color: #E7DFCC;
+  text-align: center;
+  padding: clamp(3.5rem, 8vw, 6rem) 1.5rem;
+}
+.cta-band__title {
+  font-family: var(--font-head);
+  font-weight: 700;
+  color: var(--gold);
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  margin: 0 0 1.2rem;
+  letter-spacing: 0.03em;
+}
+.cta-band__text { max-width: 46ch; margin: 0 auto 2.2rem; font-size: 1.08rem; }
+.cta-band__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+.cta-band__actions .btn--ghost-gold[data-pending] { opacity: 0.75; }
+.cta-band__blognote {
+  margin: 1.4rem auto 0;
+  font-size: 0.88rem;
+  color: #C9BC98;
+  max-width: 52ch;
+}
+
+/* =============================================================
+   FOOTER
+   ============================================================= */
+.footer {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, #23392a 0%, #1a2b1f 100%);
+  color: #CDBE97;
+  padding: 2.5rem 1.5rem 1.75rem;
+}
+/* same living dragon-scale texture as the nav, so they bookend the page */
+.footer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("assets/images/Dragon Scale Foley 01.png") repeat;
+  background-size: 340px auto;
+  opacity: 0.4;
+  pointer-events: none;
+  animation: nav-scale-pulse 6s ease-in-out infinite;
+}
+.footer__inner,
+.footer__copy { position: relative; z-index: 1; }
+.footer__inner {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  padding-bottom: 1.75rem;
+  border-bottom: 1px solid rgba(233, 200, 119, 0.15);
+}
+.footer__links { display: flex; flex-wrap: wrap; gap: 1.75rem; }
+.footer__links a {
+  font-family: var(--font-head);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.72rem;
+  color: #CDBE97;
+  transition: color 0.18s ease;
+}
+.footer__links a:hover { color: var(--gold); }
+.footer__social { display: flex; gap: 0.75rem; }
+.social--footer {
+  width: 36px; height: 36px;
+  border-color: rgba(233, 200, 119, 0.45);
+  color: var(--gold);
+  font-size: 0.9rem;
+}
+.social--footer:hover { background: var(--gold-deep); border-color: var(--gold-deep); color: #fff; }
+.footer__copy {
+  max-width: var(--maxw);
+  margin: 1.5rem auto 0;
+  text-align: center;
+  font-size: 0.74rem;
+  letter-spacing: 0.05em;
+  color: #9AA592;
+}
+
+/* =============================================================
+   RESPONSIVE
+   ============================================================= */
+@media (max-width: 900px) {
+  .hero__inner { grid-template-columns: 1fr; text-align: center; }
+  .hero__cover { order: -1; margin-bottom: 1.5rem; }
+  .hero__cover img { transform: none; width: min(240px, 60%); }
+  .hero__quote { margin-left: auto; margin-right: auto; border-left: none; padding-left: 0; }
+  .hero__cta, .hero__badges { justify-content: center; }
+
+  .coming__card { grid-template-columns: 1fr; text-align: center; }
+  .coming__cover { max-width: 260px; margin: 0 auto; }
+  .coming__actions { justify-content: center; }
+
+  .about__inner { grid-template-columns: 1fr; text-align: center; }
+  .about__title { text-align: center; }
+  .about__art { max-width: 340px; margin: 0 auto; order: -1; }
+  .about__creed { text-align: left; }
+
+  .series__grid { grid-template-columns: 1fr; max-width: 420px; }
+  .praise__grid { grid-template-columns: 1fr 1fr; }
+  .awards__grid { grid-template-columns: repeat(2, 1fr); max-width: 520px; gap: 2.25rem; }
+
+  .scribe__inner { grid-template-columns: 1fr; }
+  .scribe__photo { max-width: 340px; margin: 0 auto; order: -1; }
+  .scribe__name { text-align: center; }
+  .scribe__body { text-align: left; }
+}
+
+@media (max-width: 640px) {
+  .nav__toggle { display: block; }
+  .nav__links {
     position: absolute;
-}
-
-h1 {
-    /* font-size: 96px; */
-    font-size: 6rem;
-    margin: 0;
-}
-
-.hero-intro-text{
-    font-family: "Milonga", serif;
-    /* font-size: 48px; */
-    font-size: 3rem;
-}
-
-.hero-tagline-text {
-    font-family: "Milonga", serif;
-    /* font-size: 36px; */
-    font-size: 2.25rem;
-}
-
-
-/* Story */
-
-/* Note: this H2, p are general text style and can likely be moved elsewhere */
-h2 {
-    /* font-size: 60px; */
-    font-size: 3.75rem;
-}
-
-
-p {
-    /* font-size: 20px; */
-    font-size: 1.25rem;
-    /* line-height: 35px; */
-    line-height: 2.1875rem;
-}
-
-.story-section-title {
-    margin-bottom: 0;
-}
-
-.story-content-text {
-    width: 50%;
-}
-
-
-.flex-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-/* Tomes Section */
-
-.upcoming-tomes-text {
-    /* font-size: 48px; */
-    font-size: 3rem;
-    margin-top: 0;
-}
-
-.book-img {
-    width: 30%;
-    height: auto;
-}
-
-.book-card {
-    display: flex;
-    /* gap: 36px; */
-    gap: 2.25em;
-
-    /* margin-bottom: 48px; */
-    margin-bottom: 3rem;
-
-}
-
-.book-description-panel {
-    background-color: #FFEAB1;
-
-    /* padding: 24px 42px; */
-    padding: 1.5rem 2.625rem;
-}
-
-.book-title {
-    /* font-size: 32px; */
-    font-size: 2rem;
-    font-weight: bold;
-    margin-bottom: 0;
-}
-
-.book-episode {
-    font-size: 1.25rem;
-    font-weight: bold;
-    margin-top: 0;
-}
-
-.italics {font-style: italic;}
-
-.book-credits {
-    /* font-size: 20px; */
-    font-size: 1.25rem;
-
-    font-weight: 600;
-}
-
-.vendor-links-container {
-    display: flex;
-    align-items: center;
-    gap: .35rem;
-}
-
-.links-container{
-    display: flex;
-    gap: .5rem;
-    align-items: flex-start;
-}
-
-.vendor-logos {
-    
-    font-size: 2rem;
-}
-
-.vendor-links img {
-    width: 2rem;
-    height: 2rem;
-
-}
-
-.vendor-links {
- text-decoration: none;
- color: #21282D;
-
-}
-
-
-.heading-text-utility {
-    font-family: "Milonga", serif;
-    /* font-size: 24px; */
-    font-size: 1.5rem;
-}
-
-.author-img {
-    width: 45%;
-}
-
-
-
-/* *********************************************** */
-/* **************** MEDIA QUERIES **************** */
-/* *********************************************** */
-
-@media only screen and (max-width: 1779px){
-    .book-img {
-        width: 35%;
-    }
-}
-@media only screen and (max-width: 1565px){
-    .book-img {
-        width: 45%;
-    }
-}
-@media only screen and (max-width: 1484px){
-    main {
-        padding: 2.25em;
-    }
-    
-    .book-img {
-        width: 55%;
-    }
-
-
-}
-
-/* First Breakpoint 1231px + is handled by the current design */
-
-@media only screen and (max-width: 1229px){
-    /* h1{ color:purple;} */
-    main {
-        padding: 0 2.25rem;
-    }
-}
-
-@media only screen and (max-width: 1202px){
-    /* h1{ color:greenyellow;} */
-
-    nav {
-        display: none;
-    }
-
-    .mobile-menu-icon {
-        display: block;
-    }
-
-    .mobile-close-icon {
-        display: none;
-
-        color: #FFB900;
-        font-size: 1.25rem;
-        /* using this to create a similar effect to the nav links */
-        
-        text-shadow: 1px 1px 2px #000;
-        /* outline stroke for text is experimental -- might not be the best approach? */
-        -webkit-text-stroke: .5px #000;
-    }
-
-    .navbar {
-     width: 100%;
-     padding: 1.25rem;
-     align-items: center;   
-     flex-direction: column;
-    }
-
-    .navbar-logo-mobile-menu {
-        width: 100%;
-        justify-content: space-between;
-    }
-
-    nav ul {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        /* removes the default inline padding | allows for menu items + logo to be centered */
-        padding: 0;
-    }
-}
-
-/* stack book layout first time */
-/* @media only screen and (max-width: 1150px) */
-@media only screen and (max-width: 1329px){
-    .book-card {
-        flex-direction: column;
-        width: 100%;
-    }
-
-    .tomes-container {
-        display: flex;
-        justify-content: space-between;
-        /* flex-direction: column; */
-        gap: 24px
-    }
-
-    .book-img {width: 100%;}
-}
-
-/* stack book layout first time */
-@media only screen and (max-width: 1000px){
-    .hero {
-        padding: 8rem 2rem;
-    }
-    
-    .book-card {
-        flex-direction: column;
-        width: 100%;
-    }
-
-    .tomes-container {
-        display: flex;
-        justify-content: space-between;
-        flex-direction: column;
-        
-    }
-
-    .book-img {width: 100%;}
-}
-
-/* stack book layout first time */
-@media only screen and (max-width: 900px){
-    .book-card {
-        flex-direction: column;
-        width: 100%;
-    }
-
-    .tomes-container {
-        display: flex;
-        justify-content: space-between;
-        flex-direction: column;
-        
-    }
-
-    .story-content-text {
-        width: 100%;
-        order: 2;
-    }
-
-    .story-section-img {
-        width: 70%;
-        order: 1
-    }
-
-    .flex-container {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: center;
-    }
-}
-
-
-
-@media only screen and (max-width: 500px) {
- 
-    .navbar-logo-mobile-menu {
-        width: 100%;
-        justify-content:center;
-    }
-
-    .logo-img {
-        width: 90%;
-    }
-
-
-    main {
-        width: 100%;
-        padding: 1rem;
-    }
-
-    section {
-        margin-bottom: 4rem;
-    }
-
-    .home-logo-link {
-        text-align: center;
-    }
-
-   /* hero section */
-   .hero {
-    background-image: url(assets/images/DragonsTrovePress-Watermark-Hero-Logo.png);
-    background-repeat: no-repeat;
-    /* Turning off contain since this increases the img size */
-    /* background-size: contain; */
-    background-position: center;
-    background-size: contain;
-
-    /* padding: 200px; */
-    /* padding: 12.5rem; */
-    padding: 8rem 1rem;
-    text-align: center;
-
-    }
-
-    /* .hero-logo {
-        z-index: -1;
-        position: absolute;
-    } */
-
-    h1 {
-        /* font-size: 96px; */
-        /* font-size: 6rem; */
-        font-size: 3rem;
-        margin: .5rem 0;
-    }
-
-    .hero-intro-text{
-        font-family: "Milonga", serif;
-        /* font-size: 48px; */
-        /* font-size: 3rem; */
-        font-size: 1.5rem;
-    }
-
-    .hero-tagline-text {
-        font-family: "Milonga", serif;
-        /* font-size: 36px; */
-        /* font-size: 2.25rem; */
-        font-size: 1.125rem;
-    }
-
-    /* Story */
-
-    /* Note: this H2, p are general text style and can likely be moved elsewhere */
-    h2 {
-        /* font-size: 60px; */
-        /* font-size: 3.75rem; */
-        font-size: 1.875rem;
-        text-align: center;
-    }
-
-
-    p {
-        /* font-size: 20px; */
-        font-size: 1rem;
-        /* line-height: 35px; */
-        line-height: 2.1875rem;
-    }
-
-    .story-section-title {
-        margin-bottom: 0;
-    }
-
-    /* .story-content-text {
-        width: 100%;
-        order: 2;
-    }
-
-    .story-section-img {
-        width: 70%;
-        order: 1
-    }
-
-    .flex-container {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: center;
-    } */
-
-    /* Tomes Section */
-        
-        .book-img {
-            width: 100%;
-            /* height: auto; */
-        }
-        
-        .book-card {
-            display: flex;
-            flex-direction: column;
-            /* gap: 36px; */
-            /* gap: 2.25em; */
-        
-            /* margin-bottom: 48px; */
-            margin-bottom: 3rem;
-        
-        }
-        
-        .book-description-panel {
-            background-color: #FFEAB1;
-        
-            /* padding: 24px 42px; */
-            padding: 1.5rem 2.625rem;
-        }
-        
-        .book-title {
-            /* font-size: 32px; */
-            font-size: 2rem;
-            font-weight: bold;
-        }
-        
-        .book-credits {
-            /* font-size: 20px; */
-            font-size: 1.25rem;
-        
-            font-weight: 600;
-        }
-
-        .upcoming-tomes-text {
-            font-size: 2.25rem;
-        }
-        
-        .heading-text-utility {
-            font-family: "Milonga", serif;
-            /* font-size: 24px; */
-            font-size: 1.5rem;
-        }
-
-        /* author section */
-        .author-img {
-            width: 85%;
-        }
-
-        footer {
-            justify-content: center;
-        }
+    top: 100%; left: 0; right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    background: #22381f;
+    padding: 0.5rem 1.5rem 1.25rem;
+    border-bottom: 1px solid rgba(233, 200, 119, 0.18);
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.3);
+    display: none;
   }
+  .nav__links.is-open { display: flex; }
+  .nav__links > a:not(.btn) { padding: 0.85rem 0; border-bottom: 1px solid rgba(233, 200, 119, 0.1); }
+  .nav__links > .btn { margin-top: 0.9rem; }
+
+  .praise__grid { grid-template-columns: 1fr; }
+  .awards__grid { grid-template-columns: 1fr 1fr; max-width: 300px; gap: 1.75rem; }
+  .brand__logo { height: 36px; }
+  .brand--footer .brand__logo { height: 40px; }
+  .hero__badges { gap: 1.25rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+}
